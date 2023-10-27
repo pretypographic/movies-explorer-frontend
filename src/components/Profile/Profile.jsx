@@ -1,6 +1,6 @@
 function Profile () {
   return (
-    <body></body>
+    <main></main>
   )
 }
 

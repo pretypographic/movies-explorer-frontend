@@ -1,6 +1,6 @@
 function Movies () {
   return (
-    <body></body>
+    <main></main>
   )
 }
 

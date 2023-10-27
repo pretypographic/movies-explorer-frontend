@@ -1,0 +1,141 @@
+.aboutme {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 110px 70px 125px;
+}
+
+.aboutme__title {
+  color: #FFF;
+  width: 100%;
+  margin: 0 0 66px;
+  box-sizing: border-box;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #DADADA;
+  font-family: Inter;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.88px;
+}
+
+.aboutme__article {
+  margin-bottom: 100px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.aboutme__portfolio {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.aboutme__portfolio-work {
+  box-sizing: border-box;
+  padding: 20px 0;
+  border-bottom: 1px solid #424242;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.aboutme__portfolio-work:first-of-type {
+  padding-top: 0;
+}
+
+.aboutme__portfolio-work:last-of-type {
+  padding-bottom: 0;
+  border: none;
+}
+
+.aboutme__experience {
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+}
+
+.aboutme__subtitle {
+  color: #FFF;
+  margin: 0 0 18px;
+  font-family: Inter;
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 58px;
+  letter-spacing: -2px;
+}
+
+.aboutme__subtitle_specialty {
+  margin: 0 0 26px;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: normal;
+}
+
+.aboutme__subtitle_portfolio {
+  color: #8B8B8B;
+  margin: 0 0 50px;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-size: 18px;
+  line-height: 20px;
+  letter-spacing: normal;
+}
+
+.aboutme__text {
+  color: #FFF;
+  height: 100%;
+  margin: 0;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+}
+
+.aboutme__photo {
+  width: 270px;
+  height: 327px;
+  border-radius: 10px;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.aboutme__link {
+  color: #FFF;
+  text-decoration: none;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.aboutme__link_portfolio {
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 50px;
+  letter-spacing: -1.2px;
+}
+
+.aboutme__link_icon {
+  height: 50px;
+  width: 29px;
+  display: flex;
+  background: url(../../images/text__COLOR_font-main.svg) no-repeat center;
+  position: absolute;
+  top: 20px;
+  right: 0;
+  bottom: 20px;
+}
+
+.aboutme__portfolio-work:first-of-type .aboutme__link_icon {
+  top: 0;
+}
+
+.aboutme__portfolio-work:last-of-type .aboutme__link_icon {
+  bottom: 0;
+}

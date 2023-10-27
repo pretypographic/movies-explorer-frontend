@@ -1,6 +1,6 @@
 function SavedMovies () {
   return (
-    <body></body>
+    <main></main>
   )
 }
 
