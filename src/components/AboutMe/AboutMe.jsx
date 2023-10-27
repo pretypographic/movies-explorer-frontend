@@ -13,43 +13,46 @@ function AboutMe() {
             игр. Мой опыт также охватывает администрирование театральной деятельности,
             работу в студии дубляжа и участие в художественных и арт-проектах. Мое
             образование включает в себя курсы веб-разработки в Yandex Practicum и
-            курсы разработки игр в Школе дизайна Высшей школы экономики. Разнообразный 
-            опыт помогает креативно подходить к разработке приложений и 
+            курсы разработки игр в Школе дизайна Высшей школы экономики. Разнообразный
+            опыт помогает креативно подходить к разработке приложений и
             создавать привлекательные и функциональные проекты.</p>
           <a
             href="https://github.com/pretypographic"
             className="aboutme__link"
-            target="_blank" 
+            target="_blank"
             rel="noreferrer">Github</a>
         </div>
         <img className="aboutme__photo" src={photo} alt='Фотография: я за работой.' />
-      </article>      
+      </article>
       <h4 className="aboutme__subtitle aboutme__subtitle_portfolio">Портфолио</h4>
       <ol className="aboutme__portfolio">
         <li className="aboutme__portfolio-work">
           <a
-          href="https://wecto.nomoredomainsicu.ru"
-          className="aboutme__link aboutme__link_portfolio"
-          title="Место"
-          target="_blank" 
-          rel="noreferrer">Одностраничное приложение <span className="aboutme__link aboutme__link_icon" /></a>
-          </li>
+            href="https://wecto.nomoredomainsicu.ru"
+            className="aboutme__link aboutme__link_portfolio"
+            title="Место"
+            target="_blank"
+            rel="noreferrer">Одностраничное приложение
+            <span className="aboutme__link aboutme__link_icon" /></a>
+        </li>
         <li className="aboutme__portfolio-work">
           <a
-          href="https://pretypographic.github.io/russian-travel/"
-          className="aboutme__link aboutme__link_portfolio"
-          title="Путешествие по России"
-          target="_blank" 
-          rel="noreferrer">Адаптивный сайт <span className="aboutme__link aboutme__link_icon" /></a>
-          </li>
+            href="https://pretypographic.github.io/russian-travel/"
+            className="aboutme__link aboutme__link_portfolio"
+            title="Путешествие по России"
+            target="_blank"
+            rel="noreferrer">Адаптивный сайт
+            <span className="aboutme__link aboutme__link_icon" /></a>
+        </li>
         <li className="aboutme__portfolio-work">
           <a
-          href="https://pretypographic.github.io/how-to-learn/"
-          className="aboutme__link aboutme__link_portfolio"
-          title="Научиться учиться"
-          target="_blank" 
-          rel="noreferrer">Статичный сайт <span className="aboutme__link aboutme__link_icon" /></a>
-          </li>
+            href="https://pretypographic.github.io/how-to-learn/"
+            className="aboutme__link aboutme__link_portfolio"
+            title="Научиться учиться"
+            target="_blank"
+            rel="noreferrer">Статичный сайт
+            <span className="aboutme__link aboutme__link_icon" /></a>
+        </li>
       </ol>
     </section>
   )
