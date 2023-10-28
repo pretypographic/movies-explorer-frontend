@@ -23,3 +23,13 @@ button.navtab__button:nth-of-type(3) {
 .navtab__button:hover {
   opacity: 0.8;
 }
+
+@media screen and (max-width: 768px) {
+  .navtab__button {
+    width: 82px;
+    height: 26px;
+    margin-right: 6px;
+    border-radius: 6px;
+    font-size: 12px;
+  }
+}

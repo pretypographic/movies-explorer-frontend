@@ -3,6 +3,7 @@
   width: 100%;
   box-sizing: border-box;
   padding: 20px 40px 0;
+  transition: all 0.3s;
 }
 
 .promo__substrate {
@@ -16,6 +17,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  transition: all 0.3s;
 }
 
 .promo__title {
@@ -29,4 +31,37 @@
   font-weight: 400;
   line-height: 58px;
   letter-spacing: -2px;
+  transition: all 0.3s;
+}
+
+@media screen and (max-width: 1280px) {
+  .promo {
+    height: 854px;
+    padding: 20px 20px 0;
+  }
+  .promo__substrate {
+    padding: 350px 0 30px;
+  }
+  .promo__title {
+    width: 680px;
+    font-size: 40px;
+    line-height: 52px;
+    letter-spacing: -1.6px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .promo {
+    height: 586px;
+    padding: 14px 14px 0;
+  }
+  .promo__substrate {
+    padding: 220px 0 17px;
+  }
+  .promo__title {
+    width: 292px;
+    font-size: 29px;
+    line-height: 37px;
+    letter-spacing: -1.16px;
+  }
 }

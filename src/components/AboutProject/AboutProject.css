@@ -2,6 +2,7 @@
   width: 100%;
   box-sizing: border-box;
   padding: 110px 70px;
+  transition: all 0.3s;
 }
 
 .aboutproject__title {
@@ -17,15 +18,17 @@
   font-weight: 400;
   line-height: normal;
   letter-spacing: -0.88px;
+  transition: all 0.3s;
 }
 
 .aboutproject__article {
   display: grid;
   margin-bottom: 110px;
   grid-auto-flow: column;
-  grid-template-rows: 1fr 1fr;
-  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(2, auto);
+  grid-template-columns: repeat(2, 1fr);
   gap: 26px 40px;
+  transition: all 0.3s;
 }
 
 .aboutproject__subtitle {
@@ -37,6 +40,7 @@
   font-weight: 400;
   line-height: normal;
   letter-spacing: -0.8px;
+  transition: all 0.3s;
 }
 
 .aboutproject__text {
@@ -47,22 +51,30 @@
   font-style: normal;
   font-weight: 400;
   line-height: 20px;
+  transition: all 0.3s;
 }
 
 .aboutproject__chart {
   display: grid;
   grid-template-rows: 36px 31px;
   grid-template-columns: 1fr 4fr;
+  transition: all 0.3s;
 }
 
 .aboutproject__chart-timing {
   width: 100%;
   height: 100%;
+  margin: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
   font-weight: 400;
   line-height: normal;
+  transition: all 0.3s;
 }
 
 .aboutproject__chart-timing:nth-child(1) {
@@ -77,8 +89,73 @@
 
 .aboutproject__chart-work {
   color: #8B8B8B;
+  margin: 0;
   align-self: end;
   text-align: center;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
   font-weight: 500;
   line-height: 17px;
+  transition: all 0.3s;
+}
+
+@media screen and (max-width: 1280px) {
+  .aboutproject {
+    padding: 90px 50px;
+  }
+  .aboutproject__article {
+    margin-bottom: 93px;
+    gap: 22px 30px;
+  }
+  .aboutproject__text {
+    font-size: 12px;
+    line-height: 18px;
+  }
+  .aboutproject__chart {
+    grid-template-columns: 140px 528px;
+  }
+  .aboutproject__chart-work {
+    font-weight: 400;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .aboutproject {
+    padding: 70px 18px;
+  }
+  .aboutproject__title {
+    margin: 0 0 60px;
+    padding-bottom: 29px;
+    font-size: 18px;
+    letter-spacing: -0.72px;
+  }
+  .aboutproject__article {
+    margin-bottom: 60px;
+    grid-template-rows: repeat(4, auto);
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .aboutproject__text {
+    font-size: 11px;
+    line-height: 16px;
+  }
+  .aboutproject__text:first-of-type {
+    margin-bottom: 40px;
+  }
+  .aboutproject__subtitle {
+    font-size: 18px;
+    letter-spacing: -0.72px;
+  }
+  .aboutproject__chart {
+    grid-template-rows: 35px 24px;
+    grid-template-columns: 100px 184px;
+  }
+  .aboutproject__chart-timing {
+    font-size: 11px;
+  }
+  .aboutproject__chart-work {
+    font-size: 11px;
+    line-height: normal;
+  }
 }

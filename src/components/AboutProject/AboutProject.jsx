@@ -11,10 +11,10 @@ function AboutProject() {
           было соблюдать, чтобы успешно защититься.</p>
       </article>
       <div className="aboutproject__chart">
-        <p className="aboutproject__text aboutproject__chart-timing">1 неделя</p>
-        <p className="aboutproject__text aboutproject__chart-timing">4 недели</p>
-        <p className="aboutproject__text aboutproject__chart-work">Back-end</p>
-        <p className="aboutproject__text aboutproject__chart-work">Front-end</p>
+        <p className="aboutproject__chart-timing">1 неделя</p>
+        <p className="aboutproject__chart-timing">4 недели</p>
+        <p className="aboutproject__chart-work">Back-end</p>
+        <p className="aboutproject__chart-work">Front-end</p>
       </div>
     </section>
   )
