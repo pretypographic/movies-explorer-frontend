@@ -3,55 +3,216 @@
   width: 1280px;
   box-sizing: border-box;
   padding: 0 70px;
+  background: linear-gradient(to bottom, #202020 90%, transparent);
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
+  position: sticky;
+  top: 0;
+  z-index: 1;
   transition: all 0.3s;
 }
 
 .header__logo {
   cursor: pointer;
+  position: absolute;
+  left: 70px;
+  z-index: 1;
+  transition: all 0.4s;
 }
 
-.header__access-panel {
+.header__navpanel {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.header__accesspanel {
   display: flex;
   align-items: center;
 }
 
+.header__nav {
+  display: flex;
+  align-items: center;
+  transition: all 0.3s;
+}
+
+.header__substrate {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-auto-flow: row;
+  align-items: center;
+  gap: 16px;
+  transition: all 0.3s;
+}
+
 .header__button {
+  color: #FFF;
   padding: 0;
   border: none;
   background: none;
   font-family: Inter;
-  font-size: 12px;
   font-style: normal;
   font-weight: 500;
-  line-height: 16px;
   transition: all 0.4s;
   cursor: pointer;
-}
-
-.header__button_signup {
-  color: #FFF;
-  text-align: right;
-}
-
-.header__button_signin {
-  height: 32px;
-  width: 76px;
-  margin-left: 30px;
-  border-radius: 3px;
-  background: #3DDC84;
 }
 
 .header__button:hover {
   opacity: 0.8;
 }
 
+.header__upsignbutton {
+  text-align: right;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.header__insignbutton {
+  color: #000;
+  height: 32px;
+  width: 76px;
+  margin-left: 30px;
+  border-radius: 3px;
+  background: #3DDC84;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.header__navbutton {
+  text-align: right;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18px;
+}
+
+.header__navbutton_current {
+  font-weight: 500;
+  pointer-events: none;
+}
+
+.header__navbutton_main {
+  display: none;
+}
+
+.header__accountnavbutton {
+  width: 100px;
+  height: 32px;
+  border-radius: 20px;
+  background: #313131;
+  position: absolute;
+  right: 0;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.header__accessnavbutton {
+  width: 44px;
+  height: 44px;
+  background: url(../../images/icon__COLOR_icon-main.svg) no-repeat center;
+  display: none;
+  position: absolute;
+  right: 0;
+}
+
+.header__accessnavbutton_active {
+  background: url(../../images/Group.svg) no-repeat center;
+}
+
+.header__shadow {
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  display: none;
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: all 0.3s;
+}
+
 @media screen and (max-width: 1280px) {
   .header {
     width: 768px;
     padding: 0 30px;
+  }
+  .header__logo {
+    left: 30px;
+    z-index: 0;
+  }
+  .header__accessnavbutton {
+    display: flex;
+    z-index: 3;
+  }
+  .header__nav {
+    opacity: 0;
+  }
+  .header__nav_opened {
+    opacity: 1;
+  }
+  .header__substrate {
+    width: calc(768px * 0.68);
+    height: 100vh;
+    padding-top: 160px;
+    padding-right: calc((100vw - 768px) / 2 + 30px);
+    background: #202020;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 21px);
+    justify-items: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 3;
+    transform: translateX(100vw);
+  }
+  .header__nav_opened .header__substrate {
+    transform: translateX(0);
+  }
+  .header__navbutton {
+    font-feature-settings: 'clig' off, 'liga' off;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: normal;
+    transform: translateY(100vh);
+  }
+  .header__navbutton_main {
+    display: inline-block;
+  }
+  .header__navbutton_current {
+    position: relative;
+    pointer-events: none;
+  }
+  .header__navbutton_current::after {
+    content: "";
+    width: 100%;
+    height: 2px;
+    background-color: #FFF;
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+  }
+  .header__nav_opened .header__navbutton {
+    transform: translateY(0);
+    transition: transform ease-out 0.6s;
+  }
+  .header__accountnavbutton {
+    position: fixed;
+    bottom: 90px;
+    right: calc(((100vw - 768px) / 2 + 30px) + 768px * 0.68 / 2);
+    z-index: 3;
+    transform: translate(50px, 100vh);
+    transition: transform ease-out 0.6s;
+  }
+  .header__nav_opened .header__accountnavbutton {
+    transform: translate(50px, 0);
+  }
+  .header__nav_opened .header__shadow {
+    display: block;
+    opacity: 0.3;
   }
 }
 
@@ -60,12 +221,28 @@
     width: 320px;
     padding: 0 14px;
   }
-  .header__button {
-    font-size: 10px;
+  .header__logo {
+    left: 14px;
   }
-  .header__button_signin {
+  .header__accessnavbutton {
+    width: 40px;
+    height: 43px;
+  }
+  .header__substrate {
+    width: 100%;
+    padding: 144px 0 0 0;
+  }
+  .header__accountnavbutton {
+    bottom: 90px;
+    right: 50%;
+  }
+  .header__insignbutton {
     width: 54px;
     height: 26px;
+    font-size: 10px;
     margin-left: 14px;
+  }
+  .header__upsignbutton {
+    font-size: 10px;
   }
 }
