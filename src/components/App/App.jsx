@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import Header from '../Header/Header';
@@ -8,10 +9,10 @@ import Profile from '../Profile/Profile';
 import Login from '../Login/Login';
 import Register from '../Register/Register';
 import Footer from '../Footer/Footer';
-import { useState } from 'react';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [allowedFooter, setAllowedFooter] = useState(true);
 
   function login() {
     setLoggedIn(true)
@@ -19,6 +20,12 @@ function App() {
 
   function logout() {
     setLoggedIn(false)
+  };
+
+  function signalfooter(currentpath) {
+    const exceptionparams = ["/profile", "/signin", "/signup"];
+    const prohibitfooter = exceptionparams.includes(currentpath);
+    setAllowedFooter(!prohibitfooter)
   }
 
   return (
@@ -29,12 +36,12 @@ function App() {
         <Route path='/' element={<Main />} />
         <Route path='/movies' element={<Movies />} />
         <Route path='/saved-movies' element={<SavedMovies />} />
-        <Route path='/profile' element={<Profile logout={logout} />} />
-        <Route path='/signin' element={<Login />} />
-        <Route path='/signup' element={<Register />} />
+        <Route path='/profile' element={<Profile logout={logout} signalfooter={signalfooter} />} />
+        <Route path='/signin' element={<Login signalfooter={signalfooter} />} />
+        <Route path='/signup' element={<Register signalfooter={signalfooter} />} />
       </Routes>
 
-      <Footer />
+      <Footer allowedFooter={allowedFooter} />
     </div>
   );
 }

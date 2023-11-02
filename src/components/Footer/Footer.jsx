@@ -1,6 +1,6 @@
-function Footer () {
+function Footer({ allowedFooter }) {
   return (
-    <footer className="footer">
+    allowedFooter && <footer className="footer">
       <p className="footer__text">Учебный проект Яндекс.Практикум х BeatFilm.</p>
       <div className="footer__sources">
         <p className="footer__author">© 2023</p>

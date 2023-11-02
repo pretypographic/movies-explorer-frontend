@@ -75,6 +75,10 @@
   background: url(../../images/save3.svg) no-repeat right;
 }
 
+.moviescard__button_delete {
+  background: url(../../images/d3.svg) no-repeat right;
+}
+
 @media screen and (max-width: 1280px) {
   .moviescard {
     grid-template-rows: 190px 35px;
