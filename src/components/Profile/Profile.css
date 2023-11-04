@@ -51,8 +51,8 @@
 
 .profile__input {
   width: 100%;
-  border: none;
   outline: none;
+  border: none;
   background: none;
   text-align: end;
   position: absolute;

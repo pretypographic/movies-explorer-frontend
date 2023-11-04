@@ -1,0 +1,128 @@
+.userform {
+  width: 396px;
+  height: 100vh;
+  box-sizing: border-box;
+  padding-top: 70px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s;
+}
+
+.userform__logo {
+  width: 38px;
+  height: 38px;
+  cursor: pointer;
+}
+
+.userform__heading {
+  color: #FFF;
+  margin: 40px 0;
+  font-family: Inter;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.userform__form {  
+  width: 100%;
+  height: calc(266px + 69px + 45px);
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s;
+}
+
+.userform__label {
+  color: #8B8B8B;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  font-family: Inter;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.userform__input {
+  color: #FFF;
+  height: 46px;
+  outline: none;
+  margin-top: 10px;
+  border: none;
+  border-radius: 8px;
+  padding-left: 15px;
+  background: #2F2F2F;
+  font-family: Inter;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.userform__submitbutton {
+  color: #FFF;
+  height: 45px;
+  margin-top: auto;
+  border: none;
+  border-radius: 3px;
+  background: #4285F4;
+  text-align: center;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  cursor: pointer;
+}
+
+.userform__note {
+  display: flex;
+  justify-content: center;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.userform__link {
+  color: #4285F4;
+  cursor: pointer;
+  transition: all 0.4s;
+}
+
+.userform__link:hover {
+  opacity: 0.8;
+}
+
+.userform__text {
+  color: #8B8B8B;
+  margin: 0;
+  padding-right: 6px;
+}
+
+@media screen and (max-width: 1280px) {
+  .userform {
+    padding-top: 0;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .userform {
+    width: 100%;
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .userform__form {  
+    height: 100%;
+    margin-bottom: 14px;
+  }
+  .userform__link {
+    margin-bottom: 30px;
+  }
+}

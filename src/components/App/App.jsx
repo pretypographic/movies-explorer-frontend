@@ -12,33 +12,36 @@ import Footer from '../Footer/Footer';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [allowedHeader, setAllowedHeader] = useState(true);
   const [allowedFooter, setAllowedFooter] = useState(true);
 
   function login() {
-    setLoggedIn(true)
-  }
-
-  function logout() {
-    setLoggedIn(false)
+    setLoggedIn(true);
   };
 
-  function signalfooter(currentpath) {
-    const exceptionparams = ["/profile", "/signin", "/signup"];
-    const prohibitfooter = exceptionparams.includes(currentpath);
-    setAllowedFooter(!prohibitfooter)
+  function logout() {
+    setLoggedIn(false);
+  };
+
+  function signalComponents(currentpath) {
+    const exceptionpathHeader = ["/signin", "/signup"];
+    const exceptionpathFooter = ["/profile", "/signin", "/signup"];
+
+    setAllowedHeader(!exceptionpathHeader.includes(currentpath));
+    setAllowedFooter(!exceptionpathFooter.includes(currentpath));
   }
 
   return (
     <div className="app">
-      <Header loggedIn={loggedIn} login={login} />
+      <Header allowedHeader={allowedHeader} loggedIn={loggedIn} login={login} />
 
       <Routes>
         <Route path='/' element={<Main />} />
         <Route path='/movies' element={<Movies />} />
         <Route path='/saved-movies' element={<SavedMovies />} />
-        <Route path='/profile' element={<Profile signalfooter={signalfooter} logout={logout} />} />
-        <Route path='/signin' element={<Login signalfooter={signalfooter} />} />
-        <Route path='/signup' element={<Register signalfooter={signalfooter} />} />
+        <Route path='/profile' element={<Profile signalComponents={signalComponents} logout={logout} />} />
+        <Route path='/signin' element={<Login signalComponents={signalComponents} />} />
+        <Route path='/signup' element={<Register signalComponents={signalComponents} />} />
       </Routes>
 
       <Footer allowedFooter={allowedFooter} />

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import logo from '../../images/logo.svg';
 import Navigation from '../Navigation/Navigation';
 
-function Header({ loggedIn, login }) {
+function Header({ allowedHeader, loggedIn, login }) {
   const [accessNavActive, setAccessNavActive] = useState(false);
 
   function onClick() {
@@ -10,7 +10,7 @@ function Header({ loggedIn, login }) {
   }
 
   return (
-    <header className="header">
+    allowedHeader && <header className="header">
       <img className="header__logo" src={logo} alt="Cinema." />
       {
         loggedIn

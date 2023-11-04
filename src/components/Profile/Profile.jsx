@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
-function Profile({ signalfooter, logout }) {
+function Profile({ signalComponents, logout }) {
   const location = useLocation();
   const currentpath = location.pathname;
   const [editOn, setEditOn] = useState(false);
@@ -16,13 +16,13 @@ function Profile({ signalfooter, logout }) {
   }
 
   useEffect(() => {
-    signalfooter(currentpath);
+    signalComponents(currentpath);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentpath])
 
   return (
     <main className="profile">
-      <h1 className="profile__title">Привет, юзер.</h1>
+      <h1 className="profile__title">Привет, юзер!</h1>
       <form className="profile__form">
         <label className="profile__text profile__label">Имя
           <input
