@@ -12,9 +12,9 @@ function Main({ loggedIn }) {
 
       <main className="main">
         <Promo />
-        <AboutProject />
-        <Techs />
-        <AboutMe />
+        <AboutProject name="aboutproject" />
+        <Techs name="techs" />
+        <AboutMe name="aboutme" />
       </main>
 
       <Footer />
