@@ -1,12 +1,20 @@
+import Header from "../Header/Header";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
+import Footer from "../Footer/Footer";
 
-function SavedMovies() {
+function SavedMovies({ loggedIn }) {
   return (
-    <main className="main">
-      <SearchForm />
-      <MoviesCardList userlist={true} />
-    </main>
+    <>
+      <Header loggedIn={loggedIn} />
+
+      <main className="main">
+        <SearchForm />
+        <MoviesCardList userlist={true} />
+      </main>
+
+      <Footer />
+    </>
   )
 }
 

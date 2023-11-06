@@ -1,12 +1,23 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../images/logo.svg';
 
-function UserForm({ heading, submit, signup }) {
+function UserForm({ heading, submit, signup, login }) {
+  const navigate = useNavigate();
+
+  function handleLogoClick() {
+    navigate("/", { replace: false });
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    login();
+  }
+
   return (
     <section className="userform">
-      <img className="userform__logo" src={logo} alt="Cinema." />
+      <img className="userform__logo" src={logo} alt="Cinema." onClick={handleLogoClick} />
       <h1 className="userform__heading">{heading}</h1>
-      <form className="userform__form">
+      <form className="userform__form" onSubmit={handleSubmit}>
         {
           signup &&
           <label className="userform__label">Имя
@@ -22,16 +33,16 @@ function UserForm({ heading, submit, signup }) {
         signup
           ? <div className="userform__note">
             <p className="userform__text">Уже зарегистрированы?</p>
-            <a className="userform__link"
-              src="#"
-              title="Войти">Войти</a>
+            <Link className="userform__link"
+              to="/signin"
+              title="Войти">Войти</Link>
           </div>
           : <div className="userform__note">
             <p className="userform__text">Ещё не зарегистрированы?</p>
-            <a className="userform__link"
-              src="#"
+            <Link className="userform__link"
+              to="/signup"
               title="Регистрация">
-              Регистрация</a>
+              Регистрация</Link>
           </div>
       }
     </section>

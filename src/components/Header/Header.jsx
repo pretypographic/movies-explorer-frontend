@@ -1,23 +1,33 @@
 import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../images/logo.svg';
 import Navigation from '../Navigation/Navigation';
 
-function Header({ allowedHeader, loggedIn, login }) {
+function Header({ loggedIn }) {
   const [accessNavActive, setAccessNavActive] = useState(false);
+  const navigate = useNavigate();
 
-  function onClick() {
-    setAccessNavActive(!accessNavActive)
+  function handleLogoClick() {
+    navigate("/", {replace: false});
+  }
+
+  function handleNavigationClick() {
+    setAccessNavActive(!accessNavActive);
   }
 
   return (
-    allowedHeader && <header className="header">
-      <img className="header__logo" src={logo} alt="Cinema." />
+    <header className="header">
+      <img className="header__logo" src={logo} alt="Cinema." onClick={handleLogoClick} />
       {
         loggedIn
-          ? <Navigation accessNavActive={accessNavActive} onClick={onClick} />
+          ? <Navigation accessNavActive={accessNavActive} onClick={handleNavigationClick} />
           : <div className="header__accesspanel">
-            <button className="header__button header__upsignbutton ">Регистрация</button>
-            <button className="header__button header__insignbutton " onClick={login}>Войти</button>
+            <Link
+              to="/signup"
+              className="header__link header__upsignlink">Регистрация</Link>
+            <Link
+              to="/signin"
+              className="header__link header__insignlink">Войти</Link>
           </div>
       }
     </header>

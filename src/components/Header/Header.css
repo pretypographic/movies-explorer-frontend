@@ -49,60 +49,64 @@
   transition: all 0.3s;
 }
 
-.header__button {
+.header__link {
   color: #FFF;
-  padding: 0;
-  border: none;
-  background: none;
+  text-decoration: none;
   font-family: Inter;
   font-style: normal;
   font-weight: 500;
-  transition: all 0.4s;
   cursor: pointer;
+  transition: all 0.4s;
 }
 
-.header__button:hover {
+.header__link:hover {
   opacity: 0.8;
 }
 
-.header__upsignbutton {
+.header__upsignlink {
   text-align: right;
   font-size: 12px;
   line-height: 16px;
 }
 
-.header__insignbutton {
+.header__insignlink {
   color: #000;
   height: 32px;
   width: 76px;
   margin-left: 30px;
   border-radius: 3px;
   background: #3DDC84;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 12px;
   line-height: 16px;
 }
 
-.header__navbutton {
+.header__navlink {
   text-align: right;
   font-size: 13px;
   font-weight: 400;
   line-height: 18px;
 }
 
-.header__navbutton_current {
+.header__navlink_current {
   font-weight: 500;
   pointer-events: none;
 }
 
-.header__navbutton_main {
+.header__navlink_main {
   display: none;
 }
 
-.header__accountnavbutton {
+.header__accountnavlink {
   width: 100px;
   height: 32px;
   border-radius: 20px;
   background: #313131;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
   right: 0;
   font-size: 14px;
@@ -112,6 +116,8 @@
 .header__accessnavbutton {
   width: 44px;
   height: 44px;
+  padding: 0;
+  border: none;
   background: url(../../images/icon__COLOR_icon-main.svg) no-repeat center;
   display: none;
   position: absolute;
@@ -171,7 +177,7 @@
   .header__nav_opened .header__substrate {
     transform: translateX(0);
   }
-  .header__navbutton {
+  .header__navlink {
     font-feature-settings: 'clig' off, 'liga' off;
     text-align: center;
     font-size: 18px;
@@ -179,14 +185,14 @@
     line-height: normal;
     transform: translateY(100vh);
   }
-  .header__navbutton_main {
+  .header__navlink_main {
     display: inline-block;
   }
-  .header__navbutton_current {
+  .header__navlink_current {
     position: relative;
     pointer-events: none;
   }
-  .header__navbutton_current::after {
+  .header__navlink_current::after {
     content: "";
     width: 100%;
     height: 2px;
@@ -195,11 +201,11 @@
     bottom: -4px;
     left: 0;
   }
-  .header__nav_opened .header__navbutton {
+  .header__nav_opened .header__navlink {
     transform: translateY(0);
     transition: transform ease-out 0.6s;
   }
-  .header__accountnavbutton {
+  .header__accountnavlink {
     position: fixed;
     bottom: 90px;
     right: calc(((100vw - 768px) / 2 + 30px) + 768px * 0.68 / 2);
@@ -207,7 +213,7 @@
     transform: translate(50px, 100vh);
     transition: transform ease-out 0.6s;
   }
-  .header__nav_opened .header__accountnavbutton {
+  .header__nav_opened .header__accountnavlink {
     transform: translate(50px, 0);
   }
   .header__nav_opened .header__shadow {
@@ -232,17 +238,17 @@
     width: 100%;
     padding: 144px 0 0 0;
   }
-  .header__accountnavbutton {
+  .header__accountnavlink {
     bottom: 90px;
     right: 50%;
   }
-  .header__insignbutton {
+  .header__insignlink {
     width: 54px;
     height: 26px;
     font-size: 10px;
     margin-left: 14px;
   }
-  .header__upsignbutton {
+  .header__upsignlink {
     font-size: 10px;
   }
 }
