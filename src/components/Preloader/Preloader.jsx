@@ -1,7 +1,10 @@
-function Preloader () {
+function Preloader() {
   return (
     <section className="preloader">
-      <button className="preloader__button">Ещё</button>
+      <button
+        className="preloader__button"
+        type="button"
+        aria-label="Показать больше фильмов.">Ещё</button>
     </section>
   )
 }

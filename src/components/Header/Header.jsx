@@ -17,7 +17,7 @@ function Header({ loggedIn }) {
 
   return (
     <header className="header">
-      <img className="header__logo" src={logo} alt="Cinema." onClick={handleLogoClick} />
+      <img className="header__logo" src={logo} alt="Cinema. Логотип." onClick={handleLogoClick} />
       {
         loggedIn
           ? <Navigation accessNavActive={accessNavActive} onClick={handleNavigationClick} />

@@ -10,7 +10,11 @@ function NotFound() {
     <div className="notfound">
       <h1 className="notfound__title">404</h1>
       <p className="notfound__text">Страница не найдена</p>
-      <button className="notfound__button" onClick={handleClick}>Назад</button>
+      <button
+        className="notfound__button"
+        type="button"
+        aria-label="Вернуться назад."
+        onClick={handleClick}>Назад</button>
     </div>
   )
 }

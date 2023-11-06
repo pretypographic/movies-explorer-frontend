@@ -21,13 +21,27 @@ function UserForm({ heading, submit, signup, login }) {
         {
           signup &&
           <label className="userform__label">Имя
-            <input className="userform__input" type="text" /></label>
+            <input
+              className="userform__input"
+              type="text"
+              maxLength="30"
+              minLength="2"
+              required /></label>
         }
         <label className="userform__label">E-mail
-          <input className="userform__input" type="text" /></label>
+          <input
+            className="userform__input"
+            type="email"
+            required /></label>
         <label className="userform__label">Пароль
-          <input className="userform__input" type="text" /></label>
-        <button className="userform__submitbutton">{submit}</button>
+          <input
+            className="userform__input"
+            type="password"
+            required /></label>
+        <button
+          className="userform__submitbutton"
+          type="submit"
+          aria-label={`${submit}.`}>{submit}</button>
       </form>
       {
         signup

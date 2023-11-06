@@ -3,7 +3,7 @@ import { NavLink, Link } from "react-router-dom";
 function Navigation({ accessNavActive, onClick }) {
   return (
     <div className="header__navpanel ">
-      <nav className={`header__nav ${accessNavActive && 'header__nav_opened '}`}>
+      <nav className={`header__nav ${accessNavActive && "header__nav_opened "}`}>
         <div className="header__substrate">
           <NavLink
             to="/"
@@ -25,7 +25,9 @@ function Navigation({ accessNavActive, onClick }) {
         <div className="header__shadow" />
       </nav>
       <button
-        className={`header__accessnavbutton ${accessNavActive && 'header__accessnavbutton_active '}`}
+        className={`header__accessnavbutton ${accessNavActive && "header__accessnavbutton_active "}`}
+        type="button"
+        aria-label="Навигационная панель."
         onClick={onClick} />
     </div>
   )

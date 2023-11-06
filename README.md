@@ -15,6 +15,11 @@
 - Страница "Вход" (`/signin`) предоставляет форму для аутентификации пользователя.
 - Страница "Регистрация" (`/signup`) используется для создания нового аккаунта.
 
+## Установка и запуск
+
+Для запуска приложения в режиме разработчика:
+- `npm run start`
+
 ## Зависимости
 
 Проект использует следующие зависимости:
@@ -26,4 +31,4 @@
 
 ### Примечание
 
-Этот проект является частью сервиса Movies Explorer, который включает в себя и бэкенд-часть, доступную по ссылке: [github.com/pretypographic/movies-explorer-api](github.com/pretypographic/movies-explorer-api)
+Этот проект является частью сервиса Movies Explorer, который включает в себя и бэкенд-часть, доступную по ссылке: [https://github.com/pretypographic/movies-explorer-api](https://github.com/pretypographic/movies-explorer-api)

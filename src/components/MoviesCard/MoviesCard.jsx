@@ -6,10 +6,19 @@ function MoviesCard({ userlist, movie }) {
       <p className="moviescard__duration">{movie.duration}</p>
       {
         userlist
-          ? <button className="moviescard__button moviescard__button_delete" label="Убрать из избранного?" />
+          ? <button
+            className="moviescard__button moviescard__button_delete"
+            type="button"
+            aria-label="Убрать из избранного?" />
           : movie.saved
-          ? <button className="moviescard__button moviescard__button_saved" label="Убрать из избранного?" />
-          : <button className="moviescard__button" label="Сохранить?">Сохранить</button>
+            ? <button
+              className="moviescard__button moviescard__button_saved"
+              type="button"
+              aria-label="Убрать из избранного?" />
+            : <button
+              className="moviescard__button"
+              type="button"
+              aria-label="Сохранить?">Сохранить</button>
       }
     </div>
   )

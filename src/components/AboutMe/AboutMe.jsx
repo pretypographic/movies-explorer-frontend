@@ -22,6 +22,7 @@ function AboutMe() {
           <a
             href="https://github.com/pretypographic"
             className="aboutme__link"
+            title="github профиль"
             target="_blank"
             rel="noreferrer">Github</a>
         </div>

@@ -17,7 +17,7 @@
 .userform__heading {
   color: #FFF;
   margin: 40px 0;
-  font-family: Inter;
+  font-family: Inter, "Trebuchet MS", Helvetica, sans-serif;
   font-size: 24px;
   font-style: normal;
   font-weight: 500;
@@ -38,7 +38,7 @@
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
-  font-family: Inter;
+  font-family: Inter, "Trebuchet MS", Helvetica, sans-serif;
   font-size: 10px;
   font-style: normal;
   font-weight: 400;
@@ -54,11 +54,16 @@
   border-radius: 8px;
   padding-left: 15px;
   background: #2F2F2F;
-  font-family: Inter;
+  font-family: Inter, "Trebuchet MS", Helvetica, sans-serif;
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+}
+
+.userform__input:invalid {
+  color: #EE3465;
+  font-size: 10px;
 }
 
 .userform__submitbutton {
@@ -69,7 +74,7 @@
   border-radius: 3px;
   background: #4285F4;
   text-align: center;
-  font-family: Inter;
+  font-family: Inter, "Trebuchet MS", Helvetica, sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -85,7 +90,7 @@
 .userform__note {
   display: flex;
   justify-content: center;
-  font-family: Inter;
+  font-family: Inter, "Trebuchet MS", Helvetica, sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;

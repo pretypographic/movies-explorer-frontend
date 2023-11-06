@@ -52,7 +52,7 @@
 .header__link {
   color: #FFF;
   text-decoration: none;
-  font-family: Inter;
+  font-family: Inter, "Trebuchet MS", Helvetica, sans-serif;
   font-style: normal;
   font-weight: 500;
   cursor: pointer;
