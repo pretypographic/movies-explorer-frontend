@@ -11,8 +11,7 @@
   margin: 0 0 66px;
   box-sizing: border-box;
   padding-bottom: 24px;
-  border-bottom: 1px solid #DADADA;
-  
+  border-bottom: 1px solid #DADADA;  
   font-size: 22px;
   font-style: normal;
   font-weight: 400;
@@ -37,8 +36,7 @@
 
 .about-me__name {
   color: #FFF;
-  margin: 0 0 18px;
-  
+  margin: 0 0 18px;  
   font-size: 50px;
   font-style: normal;
   font-weight: 400;
@@ -50,8 +48,7 @@
 .about-me__subtitle {
   color: #FFF;
   margin: 0 0 26px;
-  font-feature-settings: 'clig' off, 'liga' off;
-  
+  font-feature-settings: 'clig' off, 'liga' off;  
   font-size: 18px;
   font-style: normal;
   font-weight: 500;
@@ -63,8 +60,7 @@
   color: #FFF;
   height: 100%;
   margin: 0;
-  font-feature-settings: 'clig' off, 'liga' off;
-  
+  font-feature-settings: 'clig' off, 'liga' off;  
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -83,8 +79,7 @@
 
 .about-me__link {
   color: #FFF;
-  text-decoration: none;
-  
+  text-decoration: none;  
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -92,72 +87,8 @@
   transition: all 0.4s;
 }
 
-.about-me__link_type_text {
-  font-size: 30px;
-  font-weight: 400;
-  line-height: 50px;
-  letter-spacing: -1.2px;
-  transition: all 0.3s;
-}
-
-.about-me__link_type_icon {
-  position: absolute;
-  top: 20px;
-  right: 0;
-  bottom: 20px;
-  font-size: 30px;
-  font-weight: 400;
-  line-height: 60px;
-  letter-spacing: -1.2px;
-  transition: all 0.3s;
-}
-
 .about-me__link:hover {
   opacity: 0.7;
-}
-
-.about-me__portfolio-title {
-  color: #8B8B8B;
-  margin: 0 0 50px;
-  font-feature-settings: 'clig' off, 'liga' off;
-  
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 20px;
-  transition: all 0.3s;
-}
-
-.about-me__portfolio {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.about-me__portfolio-work {
-  box-sizing: border-box;
-  padding: 20px 0;
-  border-bottom: 1px solid #424242;
-  display: flex;
-  justify-content: space-between;
-  position: relative;
-}
-
-.about-me__portfolio-work:first-of-type {
-  padding-top: 0;
-}
-
-.about-me__portfolio-work:last-of-type {
-  padding-bottom: 0;
-  border: none;
-}
-
-.about-me__portfolio-work:first-of-type .about-me__link_type_icon {
-  top: 0;
-}
-
-.about-me__portfolio-work:last-of-type .about-me__link_type_icon {
-  bottom: 0;
 }
 
 @media screen and (max-width: 1280px) {
@@ -184,18 +115,6 @@
   .about-me__text {
     font-size: 12px;
     line-height: 18px;
-  }
-  .about-me__portfolio-title {
-    font-size: 18px;
-    line-height: 20px;
-  }
-  .about-me__link_type_text {
-    font-size: 28px;
-    letter-spacing: -1.12px;
-  }
-  .about-me__link_type_icon {
-    font-size: 28px;
-    letter-spacing: -1.12px;
   }
 }
 
@@ -236,20 +155,5 @@
     width: 100%;
     margin-bottom: 40px;
     order: 1;
-  }
-  .about-me__portfolio-title {
-    margin: 0 0 40px;
-    font-size: 14px;
-    line-height: 20px;
-  }
-  .about-me__link_type_text {
-    font-size: 18px;
-    line-height: 28px;
-    letter-spacing: -0.72px;
-  }
-  .about-me__link_type_icon {
-    font-size: 18px;
-    line-height: 28px;
-    letter-spacing: -0.72px;
   }
 }

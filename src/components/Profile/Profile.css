@@ -40,11 +40,12 @@
 .profile__label {
   color: #FFF;
   width: 100%;
-  margin: 0;  
+  margin: 0;
   border-bottom: 1px solid #424242;
   padding: 0 0 16px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   position: relative;
   font-size: 11px;
   font-style: normal;
@@ -60,8 +61,7 @@
 
 .profile__input {
   color: #FFF;
-  width: 100%;
-  outline: none;
+  width: auto;
   margin: 0;
   border: none;
   background: none;
@@ -70,8 +70,6 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  position: absolute;
-  right: 0;
 }
 
 .profile__input:focus {
@@ -142,7 +140,7 @@
     padding: 70px 0 40px;
   }
   .profile__label:last-of-type {
-    margin-bottom: calc(100% -40px);
+    margin-bottom: calc(100% - 40px);
   }
   .profile__form {
     height: 100%;
