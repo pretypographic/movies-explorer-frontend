@@ -1,4 +1,4 @@
-.userform {
+.user-form {
   width: 396px;
   height: 100vh;
   box-sizing: border-box;
@@ -8,23 +8,22 @@
   transition: all 0.3s;
 }
 
-.userform__logo {
+.user-form__logo {
   width: 38px;
   height: 38px;
   cursor: pointer;
 }
 
-.userform__heading {
+.user-form__heading {
   color: #FFF;
-  margin: 40px 0;
-  
+  margin: 40px 0;  
   font-size: 24px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
 }
 
-.userform__form {  
+.user-form__inputs {  
   width: 100%;
   height: calc(266px + 69px + 45px);
   margin-bottom: 16px;
@@ -33,19 +32,18 @@
   transition: all 0.3s;
 }
 
-.userform__label {
+.user-form__label {
   color: #8B8B8B;
   margin-bottom: 20px;
   display: flex;
-  flex-direction: column;
-  
+  flex-direction: column;  
   font-size: 10px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
 }
 
-.userform__input {
+.user-form__input {
   color: #FFF;
   height: 46px;
   outline: none;
@@ -61,20 +59,19 @@
   line-height: normal;
 }
 
-.userform__input:invalid {
+.user-form__input:invalid {
   color: #EE3465;
   font-size: 10px;
 }
 
-.userform__submitbutton {
+.user-form__button {
   color: #FFF;
   height: 45px;
   margin-top: auto;
   border: none;
   border-radius: 3px;
   background: #4285F4;
-  text-align: center;
-  
+  text-align: center;  
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -83,11 +80,11 @@
   cursor: pointer;
 }
 
-.userform__submitbutton:hover {
+.user-form__button:hover {
   opacity: 0.8;
 }
 
-.userform__note {
+.user-form__note {
   display: flex;
   justify-content: center;
   
@@ -97,43 +94,43 @@
   line-height: normal;
 }
 
-.userform__link {
+.user-form__link {
   color: #4285F4;
   cursor: pointer;
   text-decoration: none;
   transition: all 0.4s;
 }
 
-.userform__link:hover {
+.user-form__link:hover {
   opacity: 0.7;
 }
 
-.userform__text {
+.user-form__text {
   color: #8B8B8B;
   margin: 0;
   padding-right: 6px;
 }
 
 @media screen and (max-width: 1280px) {
-  .userform {
+  .user-form {
     padding-top: 0;
     justify-content: center;
   }
 }
 
 @media screen and (max-width: 600px) {
-  .userform {
+  .user-form {
     width: 100%;
     padding-top: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-  .userform__form {  
+  .user-form__inputs {  
     height: 100%;
     margin-bottom: 14px;
   }
-  .userform__link {
+  .user-form__link {
     margin-bottom: 30px;
   }
 }

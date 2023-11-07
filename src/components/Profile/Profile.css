@@ -27,29 +27,29 @@
   transition: all 0.3s;
 }
 
-.profile__text {
-  color: #FFF;
-  margin: 0;
-  
+.profile__paragraph {
+  color: #FF004C;
+  margin: 0 0 20px;  
   font-size: 11px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-}
-
-.profile__errortext {
-  color: #FF004C;
-  margin-bottom: 20px;
   font-weight: 400;
 }
 
 .profile__label {
+  color: #FFF;
   width: 100%;
+  margin: 0;  
   border-bottom: 1px solid #424242;
   padding: 0 0 16px;
   display: flex;
   align-items: center;
   position: relative;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 }
 
 .profile__label:last-of-type {
@@ -59,11 +59,17 @@
 }
 
 .profile__input {
+  color: #FFF;
   width: 100%;
   outline: none;
+  margin: 0;
   border: none;
   background: none;
   text-align: end;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
   position: absolute;
   right: 0;
 }
@@ -98,22 +104,22 @@
   opacity: 0.8;
 }
 
-.profile__editbutton {
+.profile__button_assignment_edit {
   padding: 0 0 16px;
 }
 
-.profile__quitbutton {
+.profile__button_assignment_exit {
   color: #EE3465;;
 }
 
-.profile__savebutton {
+.profile__button_assignment_submit {
   height: 45px;
   width: 396px;
   border-radius: 3px;
   background: #4285F4;
 }
 
-.profile__savebutton_disabled {
+.profile__button_status_disabled {
   color: #C2C2C2;
   background: #F8F8F8;
   pointer-events: none;
@@ -140,7 +146,7 @@
   .profile__button {
     font-size: 12px;
   }
-  .profile__savebutton {
+  .profile__button_assignment_submit {
     width: 260px;
   }
 }

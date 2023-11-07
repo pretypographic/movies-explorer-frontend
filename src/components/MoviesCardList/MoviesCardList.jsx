@@ -2,13 +2,13 @@ import movies from "../../utils/movies";
 
 import MoviesCard from "../MoviesCard/MoviesCard";
 
-function MoviesCardList({ userlist }) {
+function MoviesCardList({ userList }) {
   return (
-    <section className="moviescardlist">
+    <section className="movies-card-list">
       {
-        userlist
+        userList
           ? movies.map((movie, id) => (
-            movie.saved && <MoviesCard userlist={userlist} movie={movie} key={id} />
+            movie.saved && <MoviesCard userList={userList} movie={movie} key={id} />
           ))
           : movies.map((movie, id) => (
             <MoviesCard key={id} movie={movie} />

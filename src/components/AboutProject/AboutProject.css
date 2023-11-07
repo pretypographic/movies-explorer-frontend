@@ -1,11 +1,11 @@
-.aboutproject {
+.about-project {
   width: 100%;
   box-sizing: border-box;
   padding: 110px 70px;
   transition: all 0.3s;
 }
 
-.aboutproject__title {
+.about-project__title {
   color: #FFF;
   width: 100%;
   margin: 0 0 70px;
@@ -21,7 +21,7 @@
   transition: all 0.3s;
 }
 
-.aboutproject__article {
+.about-project__article {
   display: grid;
   margin-bottom: 110px;
   grid-auto-flow: column;
@@ -31,7 +31,7 @@
   transition: all 0.3s;
 }
 
-.aboutproject__subtitle {
+.about-project__subtitle {
   color: #FFF;
   margin: 0;
   
@@ -43,7 +43,7 @@
   transition: all 0.3s;
 }
 
-.aboutproject__text {
+.about-project__text {
   color: #FFF;
   margin: 0;
   
@@ -54,14 +54,14 @@
   transition: all 0.3s;
 }
 
-.aboutproject__chart {
+.about-project__chart {
   display: grid;
   grid-template-rows: 36px 31px;
   grid-template-columns: 1fr 4fr;
   transition: all 0.3s;
 }
 
-.aboutproject__chart-timing {
+.about-project__chart-timing {
   width: 100%;
   height: 100%;
   margin: 0;
@@ -77,17 +77,17 @@
   transition: all 0.3s;
 }
 
-.aboutproject__chart-timing:nth-child(1) {
+.about-project__chart-timing:nth-child(1) {
   color: #000;
   background: #3DDC84;
 }
 
-.aboutproject__chart-timing:nth-child(2) {
+.about-project__chart-timing:nth-child(2) {
   color: #FFF;
   background: #303030;
 }
 
-.aboutproject__chart-work {
+.about-project__chart-work {
   color: #8B8B8B;
   margin: 0;
   align-self: end;
@@ -101,60 +101,60 @@
 }
 
 @media screen and (max-width: 1280px) {
-  .aboutproject {
+  .about-project {
     padding: 90px 50px;
   }
-  .aboutproject__article {
+  .about-project__article {
     margin-bottom: 93px;
     gap: 22px 30px;
   }
-  .aboutproject__text {
+  .about-project__text {
     font-size: 12px;
     line-height: 18px;
   }
-  .aboutproject__chart {
+  .about-project__chart {
     grid-template-columns: 140px 528px;
   }
-  .aboutproject__chart-work {
+  .about-project__chart-work {
     font-weight: 400;
   }
 }
 
 @media screen and (max-width: 600px) {
-  .aboutproject {
+  .about-project {
     padding: 70px 18px;
   }
-  .aboutproject__title {
+  .about-project__title {
     margin: 0 0 60px;
     padding-bottom: 29px;
     font-size: 18px;
     letter-spacing: -0.72px;
   }
-  .aboutproject__article {
+  .about-project__article {
     margin-bottom: 60px;
     grid-template-rows: repeat(4, auto);
     grid-template-columns: 1fr;
     gap: 16px;
   }
-  .aboutproject__text {
+  .about-project__text {
     font-size: 11px;
     line-height: 16px;
   }
-  .aboutproject__text:first-of-type {
+  .about-project__text:first-of-type {
     margin-bottom: 40px;
   }
-  .aboutproject__subtitle {
+  .about-project__subtitle {
     font-size: 18px;
     letter-spacing: -0.72px;
   }
-  .aboutproject__chart {
+  .about-project__chart {
     grid-template-rows: 35px 24px;
     grid-template-columns: 100px 184px;
   }
-  .aboutproject__chart-timing {
+  .about-project__chart-timing {
     font-size: 11px;
   }
-  .aboutproject__chart-work {
+  .about-project__chart-work {
     font-size: 11px;
     line-height: normal;
   }

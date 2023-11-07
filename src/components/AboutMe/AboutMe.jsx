@@ -3,13 +3,13 @@ import Portfolio from '../Portfolio/Portfolio';
 
 function AboutMe() {
   return (
-    <section className="aboutme">
-      <h2 className="aboutme__title">Студент</h2>
-      <article className="aboutme__article">
-        <div className="aboutme__experience">
-          <h3 className="aboutme__name">Песвианидзе Александр</h3>
-          <h4 className="aboutme__subtitle">web-разработчик, 30 лет</h4>
-          <p className="aboutme__text">Мой профессиональный путь начался
+    <section className="about-me">
+      <h2 className="about-me__title">Студент</h2>
+      <article className="about-me__article">
+        <div className="about-me__experience">
+          <h3 className="about-me__name">Песвианидзе Александр</h3>
+          <h4 className="about-me__subtitle">web-разработчик, 30 лет</h4>
+          <p className="about-me__text">Мой профессиональный путь начался
             в&nbsp;области кинорежиссуры, но&nbsp;со&nbsp;временем
             я&nbsp;переключился на&nbsp;разработку настольных игр. Мой опыт также
             охватывает администрирование театральной деятельности, работу
@@ -21,12 +21,12 @@ function AboutMe() {
             привлекательные и&nbsp;функциональные проекты.</p>
           <a
             href="https://github.com/pretypographic"
-            className="aboutme__link"
+            className="about-me__link"
             title="github профиль"
             target="_blank"
             rel="noreferrer">Github</a>
         </div>
-        <img className="aboutme__photo" src={photo} alt='Фотография: я за работой.' />
+        <img className="about-me__photo" src={photo} alt='Фотография: я за работой.' />
       </article>
       <Portfolio />
     </section>

@@ -8,14 +8,14 @@ function FilterCheckbox() {
   }
 
   return (
-    <div className="filtercheckbox">
+    <div className="filter-checkbox">
       <input
-        className="filtercheckbox__checkbox"
+        className="filter-checkbox__input"
         type="checkbox"
         id="checkbox"
         checked={checked}
         onClick={onclick} />
-      <label className="filtercheckbox__label" htmlFor="checkbox">Короткометражки</label>
+      <label className="filter-checkbox__label" htmlFor="checkbox">Короткометражки</label>
     </div>
   )
 }

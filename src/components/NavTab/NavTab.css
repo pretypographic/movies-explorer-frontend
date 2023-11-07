@@ -1,8 +1,8 @@
-.navtab {
+.nav-tab {
   display: flex;
 }
 
-.navtab__button {
+.nav-tab__button {
   color: #FFF;
   height: 36px;
   width: 96px;
@@ -23,16 +23,16 @@
   cursor: pointer;
 }
 
-.navtab__button:last-of-type {
+.nav-tab__button:last-of-type {
   margin-right: 0;
 }
 
-.navtab__button:hover {
+.nav-tab__button:hover {
   opacity: 0.8;
 }
 
 @media screen and (max-width: 600px) {
-  .navtab__button {
+  .nav-tab__button {
     width: 82px;
     height: 26px;
     margin-right: 6px;

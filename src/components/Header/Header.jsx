@@ -21,13 +21,13 @@ function Header({ loggedIn }) {
       {
         loggedIn
           ? <Navigation accessNavActive={accessNavActive} onClick={handleNavigationClick} />
-          : <div className="header__accesspanel">
+          : <div className="header__access-panel">
             <Link
               to="/signup"
-              className="header__link header__upsignlink">Регистрация</Link>
+              className="header__link header__link_for-access-panel_without-background">Регистрация</Link>
             <Link
               to="/signin"
-              className="header__link header__insignlink">Войти</Link>
+              className="header__link header__link_for-access-panel_with-background">Войти</Link>
           </div>
       }
     </header>

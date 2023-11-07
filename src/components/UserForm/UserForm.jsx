@@ -14,46 +14,46 @@ function UserForm({ heading, submit, signup, login }) {
   }
 
   return (
-    <section className="userform">
-      <img className="userform__logo" src={logo} alt="Cinema." onClick={handleLogoClick} />
-      <h1 className="userform__heading">{heading}</h1>
-      <form className="userform__form" onSubmit={handleSubmit}>
+    <section className="user-form">
+      <img className="user-form__logo" src={logo} alt="Cinema." onClick={handleLogoClick} />
+      <h1 className="user-form__heading">{heading}</h1>
+      <form className="user-form__inputs" onSubmit={handleSubmit}>
         {
           signup &&
-          <label className="userform__label">Имя
+          <label className="user-form__label">Имя
             <input
-              className="userform__input"
+              className="user-form__input"
               type="text"
               maxLength="30"
               minLength="2"
               required /></label>
         }
-        <label className="userform__label">E-mail
+        <label className="user-form__label">E-mail
           <input
-            className="userform__input"
+            className="user-form__input"
             type="email"
             required /></label>
-        <label className="userform__label">Пароль
+        <label className="user-form__label">Пароль
           <input
-            className="userform__input"
+            className="user-form__input"
             type="password"
             required /></label>
         <button
-          className="userform__submitbutton"
+          className="user-form__button"
           type="submit"
           aria-label={`${submit}.`}>{submit}</button>
       </form>
       {
         signup
-          ? <div className="userform__note">
-            <p className="userform__text">Уже зарегистрированы?</p>
-            <Link className="userform__link"
+          ? <div className="user-form__note">
+            <p className="user-form__text">Уже зарегистрированы?</p>
+            <Link className="user-form__link"
               to="/signin"
               title="Войти">Войти</Link>
           </div>
-          : <div className="userform__note">
-            <p className="userform__text">Ещё не зарегистрированы?</p>
-            <Link className="userform__link"
+          : <div className="user-form__note">
+            <p className="user-form__text">Ещё не зарегистрированы?</p>
+            <Link className="user-form__link"
               to="/signup"
               title="Регистрация">
               Регистрация</Link>

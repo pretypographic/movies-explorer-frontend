@@ -2,15 +2,15 @@ import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 
 function SearchForm() {
   return (
-    <section className="searchform">
-      <form className="searchform__form">
-        <fieldset className="searchform__fieldset">
+    <section className="search-form">
+      <form className="search-form__form">
+        <fieldset className="search-form__fieldset">
           <input
-            className="searchform__input"
+            className="search-form__input"
             type="text"
             placeholder="Фильм" />
           <button
-            className="searchform__button"
+            className="search-form__button"
             type="button"
             aria-label="Поиск." />
         </fieldset>
