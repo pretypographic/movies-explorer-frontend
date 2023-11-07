@@ -1,15 +1,11 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import logo from '../../images/logo.svg';
+import { Link } from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
+
+import Logo from '../Logo/Logo';
 
 function Header({ loggedIn }) {
   const [accessNavActive, setAccessNavActive] = useState(false);
-  const navigate = useNavigate();
-
-  function handleLogoClick() {
-    navigate("/", { replace: false });
-  }
 
   function handleNavigationClick() {
     setAccessNavActive(!accessNavActive);
@@ -17,22 +13,25 @@ function Header({ loggedIn }) {
 
   return (
     <header className="header">
-      <img
-        className="header__logo"
-        src={logo}
-        alt="Cinema. Логотип."
-        onClick={handleLogoClick} />
+      <Logo />
       {
         loggedIn
-          ? <Navigation accessNavActive={accessNavActive} onClick={handleNavigationClick} />
-          : <div className="header__access-panel">
+          ? <>
+            <Navigation accessNavActive={accessNavActive} />
+            <button
+              className={`header__button ${accessNavActive && "header__button_active "}`}
+              type="button"
+              aria-label="Навигационная панель."
+              onClick={handleNavigationClick} />
+          </>
+          : <nav className="header__nav">
             <Link
               to="/signup"
-              className="header__link header__link_for-access-panel_without-background">Регистрация</Link>
+              className="header__link header__link_type_without-background">Регистрация</Link>
             <Link
               to="/signin"
-              className="header__link header__link_for-access-panel_with-background">Войти</Link>
-          </div>
+              className="header__link header__link_type_with-background">Войти</Link>
+          </nav>
       }
     </header>
   )

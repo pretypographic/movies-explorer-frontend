@@ -7,7 +7,7 @@ function NotFound() {
     navigate(-1)
   }
   return (
-    <div className="not-found">
+    <main className="not-found">
       <h1 className="not-found__title">404</h1>
       <p className="not-found__text">Страница не найдена</p>
       <button
@@ -15,7 +15,7 @@ function NotFound() {
         type="button"
         aria-label="Вернуться назад."
         onClick={handleClick}>Назад</button>
-    </div>
+    </main>
   )
 }
 
