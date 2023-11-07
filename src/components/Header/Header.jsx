@@ -8,7 +8,7 @@ function Header({ loggedIn }) {
   const navigate = useNavigate();
 
   function handleLogoClick() {
-    navigate("/", {replace: false});
+    navigate("/", { replace: false });
   }
 
   function handleNavigationClick() {
@@ -17,7 +17,11 @@ function Header({ loggedIn }) {
 
   return (
     <header className="header">
-      <img className="header__logo" src={logo} alt="Cinema. Логотип." onClick={handleLogoClick} />
+      <img
+        className="header__logo"
+        src={logo}
+        alt="Cinema. Логотип."
+        onClick={handleLogoClick} />
       {
         loggedIn
           ? <Navigation accessNavActive={accessNavActive} onClick={handleNavigationClick} />

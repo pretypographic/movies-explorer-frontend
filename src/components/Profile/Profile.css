@@ -74,6 +74,11 @@
   right: 0;
 }
 
+.profile__input:focus {
+  outline: white 1px solid;
+  border-radius: 2px;
+}
+
 .profile__input:invalid {
   color: #EE3465;
   font-size: 10px;

@@ -15,14 +15,22 @@ function UserForm({ heading, submit, signup, login }) {
 
   return (
     <section className="user-form">
-      <img className="user-form__logo" src={logo} alt="Cinema." onClick={handleLogoClick} />
+      <img
+        className="user-form__logo"
+        src={logo}
+        alt="Cinema."
+        onClick={handleLogoClick} />
       <h1 className="user-form__heading">{heading}</h1>
-      <form className="user-form__inputs" onSubmit={handleSubmit}>
+      <form
+        className="user-form__inputs"
+        name='user-form'
+        onSubmit={handleSubmit}>
         {
           signup &&
           <label className="user-form__label">Имя
             <input
               className="user-form__input"
+              placeholder="Напечатайте ваше имя"
               type="text"
               maxLength="30"
               minLength="2"
@@ -31,11 +39,13 @@ function UserForm({ heading, submit, signup, login }) {
         <label className="user-form__label">E-mail
           <input
             className="user-form__input"
+            placeholder="Напечатайте ваш адрес электронной почты"
             type="email"
             required /></label>
         <label className="user-form__label">Пароль
           <input
             className="user-form__input"
+            placeholder="Напечатайте пароль"
             type="password"
             required /></label>
         <button

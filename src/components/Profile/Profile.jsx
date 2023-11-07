@@ -20,10 +20,11 @@ function Profile({ loggedIn, logout }) {
 
       <main className="profile">
         <h1 className="profile__title">Привет, юзер!</h1>
-        <form className="profile__form">
+        <form className="profile__form" name="profile">
           <label className="profile__label">Имя
             <input
               className="profile__input"
+              placeholder="Ваше имя"
               type="text"
               maxLength="30"
               minLength="2"
@@ -34,6 +35,7 @@ function Profile({ loggedIn, logout }) {
           <label className="profile__label">E-mail
             <input
               className="profile__input"
+              placeholder="Ваш адрес электронной почты"
               type="email"
               value={'user@inter.net'}
               disabled={!editOn}

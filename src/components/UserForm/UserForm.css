@@ -51,12 +51,15 @@
   border: none;
   border-radius: 8px;
   padding-left: 15px;
-  background: #2F2F2F;
-  
+  background: #2F2F2F;  
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+}
+
+.user-form__input:focus {
+  outline: black 1px solid;
 }
 
 .user-form__input:invalid {

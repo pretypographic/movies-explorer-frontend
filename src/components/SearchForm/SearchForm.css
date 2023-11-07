@@ -26,7 +26,6 @@
   border-radius: 8px;
   background: #2F2F2F;
   font-feature-settings: 'clig' off, 'liga' off;
-  
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -38,7 +37,7 @@
 }
 
 .search-form__input:focus {
-  outline: none;
+  outline: black 1px solid;
 }
 
 .search-form__button {

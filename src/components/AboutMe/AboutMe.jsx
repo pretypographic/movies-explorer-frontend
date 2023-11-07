@@ -26,7 +26,7 @@ function AboutMe() {
             target="_blank"
             rel="noreferrer">Github</a>
         </div>
-        <img className="about-me__photo" src={photo} alt='Фотография: я за работой.' />
+        <img className="about-me__photo" src={photo} alt='Портрет.' />
       </article>
       <Portfolio />
     </section>
