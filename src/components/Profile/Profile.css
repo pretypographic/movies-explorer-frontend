@@ -11,7 +11,7 @@
   color: #FFF;
   margin: 0 0 123px;
   text-align: center;
-  font-family: Inter, "Trebuchet MS", Helvetica, sans-serif;
+  
   font-size: 24px;
   font-style: normal;
   font-weight: 500;
@@ -30,7 +30,7 @@
 .profile__text {
   color: #FFF;
   margin: 0;
-  font-family: Inter, "Trebuchet MS", Helvetica, sans-serif;
+  
   font-size: 11px;
   font-style: normal;
   font-weight: 500;
@@ -84,7 +84,7 @@
   border: none;
   background: none;
   text-align: center;
-  font-family: Inter, "Trebuchet MS", Helvetica, sans-serif;
+  
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
@@ -125,7 +125,7 @@
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 600px) {
   .profile {
     height: calc(100vh - 74px);
     padding: 70px 0 40px;

@@ -52,7 +52,7 @@
 .header__link {
   color: #FFF;
   text-decoration: none;
-  font-family: Inter, "Trebuchet MS", Helvetica, sans-serif;
+  
   font-style: normal;
   font-weight: 500;
   cursor: pointer;
@@ -222,7 +222,7 @@
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 600px) {
   .header {
     width: 320px;
     padding: 0 14px;

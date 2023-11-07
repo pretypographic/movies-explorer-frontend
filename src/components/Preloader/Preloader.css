@@ -14,7 +14,7 @@
   padding: 0;
   background: none;
   text-align: center;
-  font-family: Inter, "Trebuchet MS", Helvetica, sans-serif;
+  
   font-size: 12px;
   font-style: normal;
   font-weight: 500;
@@ -27,7 +27,7 @@
   opacity: 0.8;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 600px) {
   .preloader__button {
     width: 240px;
   }

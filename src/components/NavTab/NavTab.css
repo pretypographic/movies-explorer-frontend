@@ -14,7 +14,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: Inter, "Trebuchet MS", Helvetica, sans-serif;
+  
   font-size: 12px;
   font-style: normal;
   font-weight: 500;
@@ -23,7 +23,7 @@
   cursor: pointer;
 }
 
-button.navtab__button:nth-of-type(3) {
+.navtab__button:last-of-type {
   margin-right: 0;
 }
 
@@ -31,7 +31,7 @@ button.navtab__button:nth-of-type(3) {
   opacity: 0.8;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 600px) {
   .navtab__button {
     width: 82px;
     height: 26px;
