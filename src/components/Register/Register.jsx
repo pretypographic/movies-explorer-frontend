@@ -1,9 +1,9 @@
 import UserForm from "../UserForm/UserForm";
 
-function Register() {
+function Register({ login }) {
   return (
     <main>
-      <UserForm heading="Добро пожаловать!" submit="Зарегистрироваться" signup={true} />
+      <UserForm heading="Добро пожаловать!" submit="Зарегистрироваться" signup={true} login={login} />
     </main>
   )
 }

@@ -31,7 +31,7 @@ function App() {
         <Route path="/saved-movies" element={<SavedMovies loggedIn={loggedIn} />} />
         <Route path="/profile" element={<Profile loggedIn={loggedIn} logout={logout} />} />
         <Route path="/signin" element={<Login login={login} />} />
-        <Route path="/signup" element={<Register />} />
+        <Route path="/signup" element={<Register login={login} />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>

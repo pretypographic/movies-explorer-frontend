@@ -2,7 +2,7 @@ function MoviesCard({ userList, movie }) {
   return (
     <div className="movies-card">
       <img className="movies-card__image" src={movie.image} alt={`Постер: ${movie.name}`} />
-      <p className="movies-card__name">{movie.name}</p>
+      <h2 className="movies-card__name">{movie.name}</h2>
       <p className="movies-card__duration">{movie.duration}</p>
       {
         userList

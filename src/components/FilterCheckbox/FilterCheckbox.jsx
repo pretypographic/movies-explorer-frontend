@@ -3,7 +3,7 @@ import { useState } from "react";
 function FilterCheckbox() {
   const [checked, setChecked] = useState(true);
 
-  function onclick() {
+  function handleCheckboxChange() {
     setChecked(!checked);
   }
 
@@ -14,7 +14,7 @@ function FilterCheckbox() {
         type="checkbox"
         id="checkbox"
         checked={checked}
-        onClick={onclick} />
+        onChange={handleCheckboxChange} />
       <label className="filter-checkbox__label" htmlFor="checkbox">Короткометражки</label>
     </div>
   )
