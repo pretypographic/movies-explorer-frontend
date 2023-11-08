@@ -2,7 +2,7 @@
   max-width: 100%;
   display: grid;
   grid-template-columns: repeat(2, auto);
-  grid-template-rows: 201px 46px;
+  grid-template-rows: 201px max-content;
   gap: 14px 30px;
   position: relative;
 }
@@ -17,6 +17,8 @@
 
 .movies-card__name {
   color: #FFF;
+  min-height: 46px;
+  max-width: 100%;
   margin: 0 0 0 14px;  
   font-size: 13px;
   font-style: normal;
@@ -81,7 +83,7 @@
 @media screen and (max-width: 1279px) {
   .movies-card {
     grid-template-rows: 190px 35px;
-    gap: 25px 30px;
+    gap: 28px 30px;
   }
   .movies-card__name {
     margin: 0;
