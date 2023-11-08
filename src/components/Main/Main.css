@@ -1,0 +1,23 @@
+.main {
+  max-width: 1280px;
+  width: 100%;
+  transition: all 0.3s;
+}
+
+.main_alignment_center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media screen and (max-width: 1279px) {
+  .main {
+    max-width: 768px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .main {
+    max-width: 320px;
+  }
+}

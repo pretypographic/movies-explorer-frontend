@@ -1,0 +1,103 @@
+.header {
+  min-height: 74px;
+  max-width: 1280px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 70px;
+  background: linear-gradient(to bottom, #202020 90%, transparent);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  transition: all 0.3s;
+}
+
+.header__nav {
+  grid-column: 3/4;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.header__link {
+  color: #FFF;
+  text-decoration: none;  
+  font-style: normal;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.4s;
+}
+
+.header__link:hover {
+  opacity: 0.8;
+}
+
+.header__link_type_without-background {
+  text-align: right;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.header__link_type_with-background {
+  color: #000;
+  height: 32px;
+  width: 76px;
+  margin-left: 30px;
+  border-radius: 3px;
+  background: #3DDC84;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.header__button {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: none;
+  background: url(../../images/icon__COLOR_icon-main.svg) no-repeat center;
+  grid-column: 3/4;
+  justify-self: end;
+  display: none;
+  cursor: pointer;
+  transition: all 0.4s;
+}
+
+.header__button_active {
+  background: url(../../images/Group.svg) no-repeat center;
+}
+
+@media screen and (max-width: 1279px) {
+  .header {
+    max-width: 768px;
+    padding: 0 30px;
+  }
+  .header__button {
+    display: flex;
+    z-index: 3;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .header {
+    max-width: 320px;
+    padding: 0 14px;
+  }
+  .header__button {
+    width: 40px;
+    transform: scale(0.8);
+  }
+  .header__link_type_with-background {
+    width: 54px;
+    height: 26px;
+    font-size: 10px;
+    margin-left: 14px;
+  }
+  .header__link_type_without-background {
+    font-size: 10px;
+  }
+}
