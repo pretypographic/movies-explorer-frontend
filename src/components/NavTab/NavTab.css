@@ -31,12 +31,12 @@
   opacity: 0.8;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 767px) {
   .nav-tab__button {
     width: 82px;
     height: 26px;
     margin-right: 6px;
     border-radius: 6px;
-    font-size: 12px;
+    font-size: 10px;
   }
 }

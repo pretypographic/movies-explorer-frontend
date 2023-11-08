@@ -19,8 +19,8 @@ function Profile({ loggedIn, logout }) {
       <Header loggedIn={loggedIn} />
 
       <main className="profile">
-        <h1 className="profile__title">Привет, юзер!</h1>
-        <form className="profile__form" name="profile">
+        <h1 className="profile__title">Привет, Виталий!</h1>
+        <form className={`profile__form ${problem && "profile__form_incorrect-input"}`} name="profile">
           <label className="profile__label">Имя
             <input
               className="profile__input"
@@ -28,7 +28,7 @@ function Profile({ loggedIn, logout }) {
               type="text"
               maxLength="30"
               minLength="2"
-              value={'юзер'}
+              value={'Виталий'}
               disabled={!editOn}
               required />
           </label>
@@ -37,14 +37,11 @@ function Profile({ loggedIn, logout }) {
               className="profile__input"
               placeholder="Ваш адрес электронной почты"
               type="email"
-              value={'user@inter.net'}
+              value={'pochta@yandex.ru'}
               disabled={!editOn}
               required />
           </label>
-          {
-            problem &&
-            <p className="profile__paragraph">При обновлении профиля произошла ошибка.</p>
-          }
+          <p className="profile__paragraph">При обновлении профиля произошла ошибка.</p>
           {
             editOn
               ? <button

@@ -1,5 +1,5 @@
 .preloader {
-  padding: 50px 0 80px;
+  padding: 48px 0 80px;
   display: flex;
   justify-content: center;
 }
@@ -13,8 +13,7 @@
   border-radius: 6px;
   padding: 0;
   background: none;
-  text-align: center;
-  
+  text-align: center;  
   font-size: 12px;
   font-style: normal;
   font-weight: 500;
@@ -27,7 +26,16 @@
   opacity: 0.8;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1279px) {
+  .preloader {
+    padding: 43px 0 80px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .preloader {
+    padding: 54px 0 83px;
+  }
   .preloader__button {
     width: 240px;
   }

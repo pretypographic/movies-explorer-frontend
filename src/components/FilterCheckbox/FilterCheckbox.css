@@ -47,17 +47,20 @@
   background: url(../../images/smalltumb.svg) no-repeat center;
 }
 
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 1279px) {
   .filter-checkbox {
     padding: 40px 0;
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 767px) {
   .filter-checkbox {
     padding: 47px 0 40px;
   }
   .filter-checkbox__label {
     font-size: 11px;
+  }
+  .filter-checkbox__label::before {
+    width: 32px;
   }
 }

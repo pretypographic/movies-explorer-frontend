@@ -10,7 +10,7 @@ import Register from '../Register/Register';
 import NotFound from '../NotFound/NotFound';
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
   const navigate = useNavigate();
 
   function login() {

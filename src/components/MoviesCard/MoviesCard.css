@@ -17,8 +17,7 @@
 
 .movies-card__name {
   color: #FFF;
-  margin: 0 0 0 14px;
-  
+  margin: 0 0 0 14px;  
   font-size: 13px;
   font-style: normal;
   font-weight: 500;
@@ -79,7 +78,7 @@
   background: url(../../images/d3.svg) no-repeat right;
 }
 
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 1279px) {
   .movies-card {
     grid-template-rows: 190px 35px;
     gap: 25px 30px;
@@ -95,9 +94,12 @@
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 767px) {
   .movies-card {
     grid-template-rows: 168px 24px;
     gap: 16px 30px;
+  }
+  .movies-card__name {    
+    font-size: 12px;
   }
 }

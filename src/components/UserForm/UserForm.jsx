@@ -1,12 +1,7 @@
-import { Link, useNavigate } from 'react-router-dom';
-import logo from '../../images/logo.svg';
+import { Link } from 'react-router-dom';
+import Logo from '../Logo/Logo';
 
 function UserForm({ heading, submit, signup, login }) {
-  const navigate = useNavigate();
-
-  function handleLogoClick() {
-    navigate("/", { replace: false });
-  }
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -15,11 +10,7 @@ function UserForm({ heading, submit, signup, login }) {
 
   return (
     <section className="user-form">
-      <img
-        className="user-form__logo"
-        src={logo}
-        alt="Cinema."
-        onClick={handleLogoClick} />
+      <Logo />
       <h1 className="user-form__heading">{heading}</h1>
       <form
         className="user-form__inputs"

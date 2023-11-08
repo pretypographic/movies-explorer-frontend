@@ -1,5 +1,6 @@
 .footer {
-  width: 1280px;
+  max-width: 1280px;
+  width: 100%;
   margin-top: auto;
   box-sizing: border-box;
   padding: 0 70px;
@@ -58,20 +59,21 @@
   opacity: 0.7;
 }
 
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 1279px) {
   .footer {
-    width: 768px;
+    max-width: 768px;
     padding: 0 30px;
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 767px) {
   .footer {
-    width: 320px;
+    max-width: 320px;
     padding: 0 10px;
   }
   .footer__text {
-    font-size: 13px;
+    padding: 77px 0 20px;
+    font-size: 12px;
   }
   .footer__sources {
     padding: 30px 0 20px;

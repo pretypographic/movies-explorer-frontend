@@ -1,6 +1,7 @@
 .header {
-  height: 74px;
-  width: 1280px;
+  min-height: 74px;
+  max-width: 1280px;
+  width: 100%;
   box-sizing: border-box;
   padding: 0 70px;
   background: linear-gradient(to bottom, #202020 90%, transparent);
@@ -62,15 +63,17 @@
   grid-column: 3/4;
   justify-self: end;
   display: none;
+  cursor: pointer;
+  transition: all 0.4s;
 }
 
 .header__button_active {
   background: url(../../images/Group.svg) no-repeat center;
 }
 
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 1279px) {
   .header {
-    width: 768px;
+    max-width: 768px;
     padding: 0 30px;
   }
   .header__button {
@@ -79,14 +82,14 @@
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 767px) {
   .header {
-    width: 320px;
+    max-width: 320px;
     padding: 0 14px;
   }
   .header__button {
     width: 40px;
-    height: 43px;
+    transform: scale(0.8);
   }
   .header__link_type_with-background {
     width: 54px;
