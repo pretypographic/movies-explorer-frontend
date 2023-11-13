@@ -15,6 +15,11 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
 }
 
 .search-form__input {
@@ -26,11 +31,6 @@
   padding: 0 0 0 20px;
   border-radius: 8px;
   background: #2F2F2F;
-  font-feature-settings: 'clig' off, 'liga' off;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 18px;
 }
 
 .search-form__input::placeholder {
@@ -59,6 +59,7 @@
 .search-form__error-message {
   color: #EE3465;
   width: 100%;
+  text-align: center;
   font-size: 10px;
   font-weight: 400;
 }

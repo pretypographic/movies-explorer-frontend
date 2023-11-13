@@ -7,7 +7,7 @@ import Preloader from "../Preloader/Preloader";
 import Footer from "../Footer/Footer";
 import { useEffect } from "react";
 
-function Movies({ loggedIn, getMovies, searchResult }) {
+function Movies({ loggedIn, getMovies, searchResult, preloaderOn }) {
   const {
     arrey,
     listLength,
@@ -41,7 +41,7 @@ function Movies({ loggedIn, getMovies, searchResult }) {
       <main className="main">
         <SearchForm getMovies={getMovies} />
         <MoviesCardList movies={arrey} listLength={listLength} uploadList={uploadList} searchResult={searchResult} />
-        <Preloader uploaderOn={uploaderOn} handleUploader={handleUploader} />
+        <Preloader uploaderOn={uploaderOn} preloaderOn={preloaderOn} handleUploader={handleUploader} />
       </main>
 
       <Footer />

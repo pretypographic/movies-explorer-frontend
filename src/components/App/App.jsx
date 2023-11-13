@@ -17,6 +17,7 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(true);
   const [userProfile, setUserProfile] = useState({});
   const [searchResult, setSearchResult] = useState([]);
+  const [preloaderOn, setPreloaderOn] = useState(false);
   const navigate = useNavigate();
 
   function login() {
@@ -38,6 +39,7 @@ function App() {
   };
 
   function getMovies(keywords) {
+    setPreloaderOn(true);
     moviesApi.getMovies()
       .then((moviesList) => {
         const newSearchResult = searchMovies(moviesList, keywords);
@@ -45,6 +47,9 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        setPreloaderOn(false);
       })
   };
 
@@ -58,7 +63,8 @@ function App() {
             loggedIn={loggedIn}
             path="/signin"
             getMovies={getMovies}
-            searchResult={searchResult} />} />
+            searchResult={searchResult}
+            preloaderOn={preloaderOn} />} />
           <Route path="/saved-movies" element={<ProtectedRoute
             element={SavedMovies}
             loggedIn={loggedIn}

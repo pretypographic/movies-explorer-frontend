@@ -7,15 +7,12 @@ function useList() {
     const [uploaderOn, setUploaderOn] = useState(false);
 
     function uploadList(sourceArray) {
-      console.log('uploadList')
-      if (Array.isArray(sourceArray) && sourceArray.length > 0) {
+      if (Array.isArray(sourceArray)) {
         if (sourceArray.length <= listLength) {
-          console.log('listLength: ', listLength);
           setUploaderOn(false);
           setArrey(sourceArray);
         } else {
           setUploaderOn(true);
-          console.log('listLength: ', listLength);
           setArrey(sourceArray.slice(0, listLength));
         }
       } else {
@@ -24,7 +21,6 @@ function useList() {
     }
 
     function handleUploader() {
-      console.log('handleUploader')
       const newLength = listLength + listRow;
       setListLength(newLength);
     }

@@ -4,6 +4,12 @@
   justify-content: center;
 }
 
+.preloader__image {
+  height: 40px;
+  width: 40px;
+  animation: rotatePreloaderImg 2s linear infinite running 
+}
+
 .preloader__button {
   color: #FFF;
   width: 320px;
@@ -38,5 +44,14 @@
   }
   .preloader__button {
     width: 240px;
+  }
+}
+
+@keyframes rotatePreloaderImg {
+  0% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0deg);
   }
 }
