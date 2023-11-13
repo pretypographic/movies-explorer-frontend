@@ -1,10 +1,11 @@
-function Preloader() {
+function Preloader({ uploaderOn, handleUploader }) {
   return (
-    <section className="preloader">
+    uploaderOn && <section className="preloader">
       <button
         className="preloader__button"
         type="button"
-        aria-label="Показать больше фильмов.">Ещё</button>
+        aria-label="Показать больше фильмов."
+        onClick={handleUploader}>Ещё</button>
     </section>
   )
 }

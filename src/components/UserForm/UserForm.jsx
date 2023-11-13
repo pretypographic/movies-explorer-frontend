@@ -7,8 +7,8 @@ function UserForm({ heading, submit, signup, login }) {
   const { values, errors, isValid, handleChange, resetForm } = useForm();
 
   function handleSubmit(event) {
+    console.log("handleSubmit: ", values);
     event.preventDefault();
-    console.log(values);
     login();
     resetForm();
   }
@@ -27,7 +27,7 @@ function UserForm({ heading, submit, signup, login }) {
             <input
               className="user-form__input"
               name="name"
-              value={values.name}
+              value={values.name ? values.name : ""}
               placeholder="Напечатайте ваше имя"
               type="text"
               maxLength="30"
@@ -35,31 +35,31 @@ function UserForm({ heading, submit, signup, login }) {
               required
               onChange={handleChange} />
             <span className="user-form__error-message">{errors.name}</span>
-            </label>
+          </label>
         }
         <label className="user-form__label">E-mail
           <input
             className="user-form__input"
             name="email"
-            value={values.email}
+            value={values.email ? values.email : ""}
             placeholder="Напечатайте ваш адрес электронной почты"
             type="email"
             required
             onChange={handleChange} />
           <span className="user-form__error-message">{errors.email}</span>
-          </label>
+        </label>
         <label className="user-form__label">Пароль
           <input
             className="user-form__input"
             name="password"
-            value={values.password}
+            value={values.password ? values.password : ""}
             placeholder="Напечатайте пароль"
             type="password"
             minLength="2"
             required
             onChange={handleChange} />
           <span className="user-form__error-message">{errors.password}</span>
-          </label>
+        </label>
         <button
           className={`user-form__button ${!isValid && "user-form__button_disabled"}`}
           type="submit"

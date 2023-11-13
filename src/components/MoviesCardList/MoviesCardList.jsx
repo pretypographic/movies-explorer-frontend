@@ -1,8 +1,13 @@
-import movies from "../../utils/movies";
+import { useEffect } from "react";
 
 import MoviesCard from "../MoviesCard/MoviesCard";
 
-function MoviesCardList({ userList }) {
+function MoviesCardList({ userList, movies, listLength, uploadList, searchResult }) {
+  useEffect(() => {
+    uploadList(searchResult);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [listLength, searchResult]);
+
   return (
     <section className="movies-card-list">
       {

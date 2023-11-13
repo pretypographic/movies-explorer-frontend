@@ -1,8 +1,8 @@
 function MoviesCard({ userList, movie }) {
   return (
     <div className="movies-card">
-      <img className="movies-card__image" src={movie.image} alt={`Постер: ${movie.name}`} />
-      <h2 className="movies-card__name">{movie.name}</h2>
+      <img className="movies-card__image" src={`https://api.nomoreparties.co/${movie.image.url}`} alt={`Постер: ${movie.nameRU}`} />
+      <h2 className="movies-card__name">{movie.nameRU}</h2>
       <p className="movies-card__duration">{movie.duration}</p>
       {
         userList

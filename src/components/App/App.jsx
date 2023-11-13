@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 
 import UserContext from '../../contexts/UserContext'
+import moviesApi from "../../utils/MoviesApi";
 
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
@@ -13,8 +14,9 @@ import NotFound from '../NotFound/NotFound';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
   const [userProfile, setUserProfile] = useState({});
+  const [searchResult, setSearchResult] = useState([]);
   const navigate = useNavigate();
 
   function login() {
@@ -27,6 +29,25 @@ function App() {
     navigate("/", { replace: true });
   };
 
+  const searchMovies = (movies, keywords) => {
+    const regex = new RegExp(keywords, "i");
+
+    return movies.filter(movie => (
+      regex.test(movie.nameRU.toLowerCase()) || regex.test(movie.nameEN.toLowerCase())
+    ));
+  };
+
+  function getMovies(keywords) {
+    moviesApi.getMovies()
+      .then((moviesList) => {
+        const newSearchResult = searchMovies(moviesList, keywords);
+        setSearchResult(newSearchResult);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  };
+
   return (
     <UserContext.Provider value={userProfile}>
       <div className="app">
@@ -35,7 +56,9 @@ function App() {
           <Route path="/movies" element={<ProtectedRoute
             element={Movies}
             loggedIn={loggedIn}
-            path="/signin" />} />
+            path="/signin"
+            getMovies={getMovies}
+            searchResult={searchResult} />} />
           <Route path="/saved-movies" element={<ProtectedRoute
             element={SavedMovies}
             loggedIn={loggedIn}
