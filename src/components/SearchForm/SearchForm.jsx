@@ -1,19 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useForm from "../../hooks/useForm";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 
 function SearchForm({ getMovies }) {
-  const [checked, setChecked] = useState(true);
+  const [shortFilmsChecked, setShortFilmsChecked] = useState(false);
   const { values, errors, isValid, handleChange } = useForm();
 
   function handleCheckboxChange() {
-    setChecked(!checked);
+    setShortFilmsChecked(!shortFilmsChecked);
   }
 
   function handleSubmit(event) {
     event.preventDefault();
-    getMovies(values.keywords);
+    getMovies(values.keywords, shortFilmsChecked);
   }
+
+  useEffect(() => {
+    getMovies(values.keywords, shortFilmsChecked);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [shortFilmsChecked])
 
   return (
     <section className="search-form">
@@ -35,9 +40,9 @@ function SearchForm({ getMovies }) {
             type="submit"
             aria-label="Поиск."
             disabled={!isValid} />
-          <span className="search-form__error-message">{errors.keywords}</span>
+          <span className="search-form__error-message">{errors.keywords && 'Нужно ввести ключевое слово'}</span>
         </fieldset>
-        <FilterCheckbox checked={checked} handleCheckboxChange={handleCheckboxChange} />
+        <FilterCheckbox checked={shortFilmsChecked} handleChange={handleCheckboxChange} />
       </form>
     </section>
   )

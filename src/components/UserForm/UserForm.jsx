@@ -3,13 +3,12 @@ import useForm from '../../hooks/useForm';
 
 import Logo from '../Logo/Logo';
 
-function UserForm({ heading, submit, signup, login }) {
+function UserForm({ signup, heading, error, submitButtonLabel, handleUserForm }) {
   const { values, errors, isValid, handleChange, resetForm } = useForm();
 
   function handleSubmit(event) {
-    console.log("handleSubmit: ", values);
     event.preventDefault();
-    login();
+    handleUserForm(values);
     resetForm();
   }
 
@@ -60,11 +59,15 @@ function UserForm({ heading, submit, signup, login }) {
             onChange={handleChange} />
           <span className="user-form__error-message">{errors.password}</span>
         </label>
+        {
+          error &&
+          <p className="user-form__error-message user-form__error-message_type_server">{error}</p>
+        }
         <button
           className={`user-form__button ${!isValid && "user-form__button_disabled"}`}
           type="submit"
-          aria-label={`${submit}.`}
-          disabled={!isValid}>{submit}</button>
+          aria-label={`${submitButtonLabel}.`}
+          disabled={!isValid}>{submitButtonLabel}</button>
       </form>
       {
         signup

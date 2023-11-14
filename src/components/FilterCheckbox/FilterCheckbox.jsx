@@ -1,4 +1,4 @@
-function FilterCheckbox({ checked, handleCheckboxChange }) {
+function FilterCheckbox({ checked, handleChange }) {
 
   return (
     <div className="filter-checkbox">
@@ -7,7 +7,7 @@ function FilterCheckbox({ checked, handleCheckboxChange }) {
         type="checkbox"
         id="checkbox"
         checked={checked}
-        onChange={handleCheckboxChange} />
+        onChange={handleChange} />
       <label className="filter-checkbox__label" htmlFor="checkbox">Короткометражки</label>
     </div>
   )

@@ -7,11 +7,16 @@
   position: relative;
 }
 
+.movies-card__link {
+  height: 100%;
+  width: 100%;
+  grid-column: 1/3;
+}
+
 .movies-card__image {
   height: 100%;
   width: 100%;
   border-radius: 6px;
-  grid-column: 1/3;
   object-fit: cover;
   pointer-events: none;
 }
@@ -20,7 +25,7 @@
   color: #FFF;
   min-height: 46px;
   max-width: 100%;
-  margin: 0 0 0 14px;  
+  margin: 0 0 0 14px;
   font-size: 13px;
   font-style: normal;
   font-weight: 500;

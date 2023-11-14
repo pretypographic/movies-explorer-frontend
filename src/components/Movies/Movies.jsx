@@ -40,8 +40,15 @@ function Movies({ loggedIn, getMovies, searchResult, preloaderOn }) {
 
       <main className="main">
         <SearchForm getMovies={getMovies} />
-        <MoviesCardList movies={arrey} listLength={listLength} uploadList={uploadList} searchResult={searchResult} />
-        <Preloader uploaderOn={uploaderOn} preloaderOn={preloaderOn} handleUploader={handleUploader} />
+        <MoviesCardList
+          movies={arrey}
+          listLength={listLength}
+          uploadList={uploadList}
+          searchResult={searchResult} />
+        <Preloader
+          uploaderOn={uploaderOn}
+          preloaderOn={preloaderOn}
+          handleUploader={handleUploader} />
       </main>
 
       <Footer />

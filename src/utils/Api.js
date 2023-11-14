@@ -11,11 +11,12 @@ class Api {
     return Promise.reject(`Error: ${res.status} - ${res.statusText}`);
   }
 
-  _sendRequest(method, endpoint = '', body) {
+  _sendRequest(method, body, endpoint = "") {
     const options = {
       method,
+      credentials: "include",
       headers: this.headers,
-    };  
+    };
     if (body) {
       options.body = JSON.stringify(body);
     }

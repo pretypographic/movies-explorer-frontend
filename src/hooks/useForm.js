@@ -22,7 +22,7 @@ function useForm() {
       setIsValid(newIsValid);
     }, [setValues, setErrors, setIsValid]);
 
-  return { values, errors, isValid, handleChange, resetForm };
+  return { values, setValues, errors, isValid, handleChange, resetForm };
 }
 
 export default useForm;

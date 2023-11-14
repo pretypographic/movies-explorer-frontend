@@ -64,6 +64,16 @@
   margin: 10px 0;
 }
 
+.user-form__error-message {
+  margin: 0 0 20px;
+  text-align: center;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  font-weight: 400;
+}
+
 .user-form__button {
   color: #FFF;
   height: 45px;

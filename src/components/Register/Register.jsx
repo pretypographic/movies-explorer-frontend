@@ -1,9 +1,14 @@
 import UserForm from "../UserForm/UserForm";
 
-function Register({ login }) {
+function Register({ handleRegister, error }) {
   return (
     <main className="main main_alignment_center">
-      <UserForm heading="Добро пожаловать!" submit="Зарегистрироваться" signup={true} login={login} />
+      <UserForm
+        signup={true}
+        eading="Добро пожаловать!"
+        submitButtonLabel="Зарегистрироваться"
+        error={error}
+        handleUserForm={handleRegister} />
     </main>
   )
 }

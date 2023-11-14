@@ -128,11 +128,6 @@
   pointer-events: none;
 }
 
-.profile__form_incorrect-input .profile__input {
-  outline: #EE3465 solid 1px;
-  border-radius: 2px;
-}
-
 .profile__form_incorrect-input .profile__label:last-of-type {
   margin-bottom: calc(220px - 34px);
 }

@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import useForm from "../../hooks/useForm";
 
 import Header from "../Header/Header";
+import UserContext from "../../contexts/UserContext";
 
-function Profile({ loggedIn, logout }) {
-  const { values, errors, isValid, handleChange } = useForm();
+function Profile({ loggedIn, handleLogOut, handleEditingUserProfile, error }) {
+  const { values, setValues, errors, isValid, handleChange } = useForm();
+  const userProfile = useContext(UserContext);
   const [editOn, setEditOn] = useState(false);
 
   function handleEdit() {
@@ -13,14 +15,30 @@ function Profile({ loggedIn, logout }) {
 
   function handleSubmit(event) {
     event.preventDefault();
+    handleEditingUserProfile(values);
   }
+
+  useEffect(() => {
+    const { name, email } = userProfile;
+    setValues({
+      name: name,
+      email: email,
+    })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  useEffect(() => {
+    if (error !== '') {
+      setEditOn(true);
+    }
+  }, [error])
 
   return (
     <>
       <Header loggedIn={loggedIn} />
 
       <main className="profile">
-        <h1 className="profile__title">Привет, Виталий!</h1>
+        <h1 className="profile__title">{`Привет, ${userProfile.name}`}</h1>
         <form
           className={`profile__form ${!isValid && "profile__form_incorrect-input"}`}
           name="profile"
@@ -33,7 +51,7 @@ function Profile({ loggedIn, logout }) {
               type="text"
               maxLength="30"
               minLength="2"
-              value={values.name}
+              value={values.name ? values.name : ""}
               disabled={!editOn}
               required
               onChange={handleChange} />
@@ -45,7 +63,7 @@ function Profile({ loggedIn, logout }) {
               name="email"
               placeholder="Ваш адрес электронной почты"
               type="email"
-              value={values.email}
+              value={values.email ? values.email : ""}
               disabled={!editOn}
               required
               onChange={handleChange} />
@@ -53,7 +71,7 @@ function Profile({ loggedIn, logout }) {
           </label>
           {
             (editOn && !isValid) &&
-            <p className="profile__paragraph">При обновлении профиля произошла ошибка.</p>
+            <p className="profile__paragraph">{error}</p>
           }
           {
             editOn
@@ -72,7 +90,7 @@ function Profile({ loggedIn, logout }) {
                   className="profile__button profile__button_assignment_exit"
                   type="button"
                   aria-label="Выйти из аккаунта."
-                  onClick={logout}>Выйти из аккаунта</button>
+                  onClick={handleLogOut}>Выйти из аккаунта</button>
               </div>
           }
         </form>

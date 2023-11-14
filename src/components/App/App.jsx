@@ -1,63 +1,178 @@
-import { useState } from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
-import UserContext from '../../contexts/UserContext'
-import moviesApi from "../../utils/MoviesApi";
+import UserContext from "../../contexts/UserContext"
+import mainApi from "../../utils/MainApi";
+import beatfilmMoviesApi from "../../utils/BeatfilmMoviesApi";
 
-import Main from '../Main/Main';
-import Movies from '../Movies/Movies';
-import SavedMovies from '../SavedMovies/SavedMovies';
-import Profile from '../Profile/Profile';
-import Login from '../Login/Login';
-import Register from '../Register/Register';
-import NotFound from '../NotFound/NotFound';
-import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import Preloader from "../Preloader/Preloader";
+import Main from "../Main/Main";
+import Movies from "../Movies/Movies";
+import SavedMovies from "../SavedMovies/SavedMovies";
+import Profile from "../Profile/Profile";
+import Login from "../Login/Login";
+import Register from "../Register/Register";
+import NotFound from "../NotFound/NotFound";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [loggedIn, setLoggedIn] = useState(false);
   const [userProfile, setUserProfile] = useState({});
   const [searchResult, setSearchResult] = useState([]);
   const [preloaderOn, setPreloaderOn] = useState(false);
   const navigate = useNavigate();
 
-  function login() {
-    setLoggedIn(true);
-    navigate("/movies", { replace: true });
-  };
+  function handleError(error) {
+    setError(error);
+    console.log(error);
+  }
 
-  function logout() {
-    setLoggedIn(false);
-    navigate("/", { replace: true });
-  };
-
-  const searchMovies = (movies, keywords) => {
-    const regex = new RegExp(keywords, "i");
-
-    return movies.filter(movie => (
-      regex.test(movie.nameRU.toLowerCase()) || regex.test(movie.nameEN.toLowerCase())
-    ));
-  };
-
-  function getMovies(keywords) {
-    setPreloaderOn(true);
-    moviesApi.getMovies()
-      .then((moviesList) => {
-        const newSearchResult = searchMovies(moviesList, keywords);
-        setSearchResult(newSearchResult);
+  function getUserProfile() {
+    mainApi.getUser()
+      .then((user) => {
+        setUserProfile(user);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        handleError(error);
+      })
+  }
+
+  function handleRegister(user) {
+    setLoading(true);
+    mainApi.createUser(user)
+      .then(() => {
+        navigate("/signin", { replace: true });
+        setError('');
+      })
+      .catch((error) => {
+        handleError(error);
       })
       .finally(() => {
-        setPreloaderOn(false);
+        setLoading(false);
+      })
+  }
+
+  function handleLogIn(user) {
+    setLoading(true);
+    mainApi.authorizeUser(user)
+      .then(() => {
+        getUserProfile();
+        setLoggedIn(true);
+        navigate("/movies", { replace: true });
+        setError('');
+      })
+      .catch((error) => {
+        handleError(error);
+      })
+      .finally(() => {
+        setLoading(false);
       })
   };
+
+  function handleLogOut() {
+    setLoading(true);
+    mainApi.closeUserSession()
+      .then(() => {
+        setUserProfile({});
+        setLoggedIn(false);
+        navigate("/", { replace: true });
+      })
+      .catch((error) => {
+        handleError(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      })
+  };
+
+  function handleEditingUserProfile(user) {
+    setLoading(true);
+    mainApi.patchUser(user)
+      .then((user) => {
+        setUserProfile(user);
+        setError('');
+      })
+      .catch((error) => {
+        handleError(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      })
+  }
+
+  function searchMovies(movies, keywords, shortFilmsChecked) {
+    const regex = new RegExp(keywords, "i");
+
+    return movies.filter((movie) => {
+      const matchesKeywords =
+        regex.test(movie.nameRU.toLowerCase()) ||
+        regex.test(movie.nameEN.toLowerCase());
+
+      if (shortFilmsChecked) {
+        return matchesKeywords && movie.duration <= 40;
+      } else {
+        return matchesKeywords;
+      }
+    });
+  };
+
+  function getMovies(keywords = "", shortFilmsChecked) {
+    if (keywords.trim() !== "") {
+      setPreloaderOn(true);
+      beatfilmMoviesApi.getMovies()
+        .then((moviesList) => {
+          console.log(moviesList[0]);
+          const newSearchResult = searchMovies(moviesList, keywords, shortFilmsChecked);
+          setSearchResult(newSearchResult);
+        })
+        .catch((error) => {
+          handleError(error);
+        })
+        .finally(() => {
+          setPreloaderOn(false);
+        })
+    } else {
+      return;
+    }
+  };
+
+  useEffect(() => {
+    setLoading(true);
+    mainApi.getUser()
+      .then((user) => {
+        setUserProfile(user);
+        setLoggedIn(true);
+      })
+      .catch(() => {
+        setLoggedIn(false);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
+
+  useEffect(() => {
+    console.log(userProfile);
+  }, [userProfile])
+
+  if (loading) {
+    return (
+      <div className="app">
+        <main className="main main_alignment_center-center">
+          <Preloader preloaderOn={loading} />
+        </main>
+      </div>
+    )
+  }
 
   return (
     <UserContext.Provider value={userProfile}>
       <div className="app">
         <Routes>
           <Route path="/" element={<Main loggedIn={loggedIn} />} />
+
           <Route path="/movies" element={<ProtectedRoute
             element={Movies}
             loggedIn={loggedIn}
@@ -65,25 +180,36 @@ function App() {
             getMovies={getMovies}
             searchResult={searchResult}
             preloaderOn={preloaderOn} />} />
+
           <Route path="/saved-movies" element={<ProtectedRoute
             element={SavedMovies}
             loggedIn={loggedIn}
             path="/signin" />} />
+
           <Route path="/profile" element={<ProtectedRoute
             element={Profile}
             loggedIn={loggedIn}
             path="/signin"
-            logout={logout} />} />
+            error={error}
+            handleLogOut={handleLogOut}
+            handleEditingUserProfile={handleEditingUserProfile} />} />
+
           <Route path="/signin" element={<ProtectedRoute
             element={Login}
             loggedIn={!loggedIn}
             path="/movies"
-            login={login} />} />
+            error={error}
+            handleLogIn={handleLogIn}
+            preloaderOn={preloaderOn} />} />
+
           <Route path="/signup" element={<ProtectedRoute
             element={Register}
             loggedIn={!loggedIn}
             path="/movies"
-            login={login} />} />
+            error={error}
+            handleRegister={handleRegister}
+            preloaderOn={preloaderOn} />} />
+
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
