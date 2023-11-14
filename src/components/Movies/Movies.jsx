@@ -7,7 +7,7 @@ import Preloader from "../Preloader/Preloader";
 import Footer from "../Footer/Footer";
 import { useEffect } from "react";
 
-function Movies({ loggedIn, getMovies, searchResult, preloaderOn }) {
+function Movies({ loggedIn, error, getMovies, searchResult, searchResultNotFound, preloaderOn }) {
   const {
     arrey,
     listLength,
@@ -34,6 +34,14 @@ function Movies({ loggedIn, getMovies, searchResult, preloaderOn }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    if (localStorage.getItem("movieslist")) {
+      const previousList = JSON.parse(localStorage.getItem("movieslist"));
+      uploadList(previousList);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <>
       <Header loggedIn={loggedIn} />
@@ -48,7 +56,9 @@ function Movies({ loggedIn, getMovies, searchResult, preloaderOn }) {
         <Preloader
           uploaderOn={uploaderOn}
           preloaderOn={preloaderOn}
-          handleUploader={handleUploader} />
+          handleUploader={handleUploader}
+          searchResultNotFound={searchResultNotFound}
+          error={error} />
       </main>
 
       <Footer />

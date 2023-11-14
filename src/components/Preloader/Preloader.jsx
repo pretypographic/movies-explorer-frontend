@@ -1,9 +1,17 @@
 import preloaderImg from '../../images/291884W.png';
 
-function Preloader({ uploaderOn, preloaderOn, handleUploader }) {
+function Preloader({ uploaderOn, preloaderOn, handleUploader, searchResultNotFound, error }) {
   return (
     <>
       {
+        searchResultNotFound && <section className="preloader">
+          <h2 className="preloader__text">Ничего не найдено</h2>
+        </section>
+      } {
+        error && <section className="preloader">
+          <h2 className="preloader__text">Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз</h2>
+        </section>
+      } {
         preloaderOn && <section className="preloader">
           <img className="preloader__image" src={preloaderImg} alt="Идёт загрузка." />
         </section>

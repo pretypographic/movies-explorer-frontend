@@ -4,7 +4,7 @@ import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 
 function SearchForm({ getMovies }) {
   const [shortFilmsChecked, setShortFilmsChecked] = useState(false);
-  const { values, errors, isValid, handleChange } = useForm();
+  const { values, setValues, errors, isValid, handleChange } = useForm();
 
   function handleCheckboxChange() {
     setShortFilmsChecked(!shortFilmsChecked);
@@ -14,6 +14,18 @@ function SearchForm({ getMovies }) {
     event.preventDefault();
     getMovies(values.keywords, shortFilmsChecked);
   }
+
+  useEffect(() => {
+    if (localStorage.getItem("keywords")) {
+      const savedKeyword = localStorage.getItem("keywords");
+      setValues({ ...values, keywords: savedKeyword });
+    }
+    if (localStorage.getItem("shortfilmschecked")) {
+      const previousState = JSON.parse(localStorage.getItem("shortfilmschecked"));
+      setShortFilmsChecked(previousState);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   useEffect(() => {
     getMovies(values.keywords, shortFilmsChecked);

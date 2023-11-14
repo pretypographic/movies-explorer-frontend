@@ -21,6 +21,7 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [userProfile, setUserProfile] = useState({});
   const [searchResult, setSearchResult] = useState([]);
+  const [searchResultNotFound, setSearchResultNotFound] = useState(false);
   const [preloaderOn, setPreloaderOn] = useState(false);
   const navigate = useNavigate();
 
@@ -77,6 +78,9 @@ function App() {
       .then(() => {
         setUserProfile({});
         setLoggedIn(false);
+        localStorage.removeItem("movieslist");
+        localStorage.removeItem("keywords");
+        localStorage.removeItem("shortfilmschecked");
         navigate("/", { replace: true });
       })
       .catch((error) => {
@@ -120,15 +124,28 @@ function App() {
 
   function getMovies(keywords = "", shortFilmsChecked) {
     if (keywords.trim() !== "") {
+      localStorage.removeItem("movieslist");
+      localStorage.removeItem("keywords");
+      localStorage.removeItem("shortfilmschecked");
       setPreloaderOn(true);
       beatfilmMoviesApi.getMovies()
         .then((moviesList) => {
           console.log(moviesList[0]);
           const newSearchResult = searchMovies(moviesList, keywords, shortFilmsChecked);
           setSearchResult(newSearchResult);
+          localStorage.setItem("movieslist", JSON.stringify(newSearchResult));
+          localStorage.setItem("keywords", keywords);
+          localStorage.setItem("shortfilmschecked", shortFilmsChecked);
+          if (newSearchResult.length > 0) {
+            setSearchResultNotFound(false);
+          } else {
+            setSearchResultNotFound(true);
+          };
+          setError('');
         })
         .catch((error) => {
           handleError(error);
+          setSearchResultNotFound(false);
         })
         .finally(() => {
           setPreloaderOn(false);
@@ -177,8 +194,10 @@ function App() {
             element={Movies}
             loggedIn={loggedIn}
             path="/signin"
+            error={error}
             getMovies={getMovies}
             searchResult={searchResult}
+            searchResultNotFound={searchResultNotFound}
             preloaderOn={preloaderOn} />} />
 
           <Route path="/saved-movies" element={<ProtectedRoute
