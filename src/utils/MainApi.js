@@ -19,7 +19,6 @@ class MainApi extends Api {
   }
 
   getUser() {
-    console.log(super.baseUrl)
     return super._sendRequest("GET", false, "/users/me");
   }
 
