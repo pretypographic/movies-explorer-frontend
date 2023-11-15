@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-function MoviesCard({ userList, movie, userMoviesList, saveMovie, deleteMovie }) {
+function MoviesCard({ isSavedMovies, movie, userMoviesDatabase, saveMovie, deleteMovie }) {
   const [movieSaved, setMovieSaved] = useState(false);
 
   function formatDuration(duration) {
@@ -23,11 +23,11 @@ function MoviesCard({ userList, movie, userMoviesList, saveMovie, deleteMovie })
   }
 
   useEffect(() => {
-    setMovieSaved(userMoviesList.some((savedMovie) => {
+    setMovieSaved(userMoviesDatabase.some((savedMovie) => {
       return savedMovie.id === movie.id;
     }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userMoviesList])
+  }, [userMoviesDatabase])
 
   return (
     <div className="movies-card">
@@ -43,7 +43,7 @@ function MoviesCard({ userList, movie, userMoviesList, saveMovie, deleteMovie })
       <h2 className="movies-card__name">{movie.nameRU}</h2>
       <p className="movies-card__duration">{formatDuration(movie.duration)}</p>
       {
-        userList
+        isSavedMovies
           ? <button
             className="movies-card__button movies-card__button_type_delete"
             type="button"

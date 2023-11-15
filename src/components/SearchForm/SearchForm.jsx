@@ -2,7 +2,12 @@ import { useEffect, useState } from "react";
 import useForm from "../../hooks/useForm";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 
-function SearchForm({ userList, getMovies }) {
+function SearchForm({
+  isSearchingNewMovies,
+  searchMovie,
+  searchResult,
+  uploadList,
+}) {
   const [shortFilmsChecked, setShortFilmsChecked] = useState(false);
   const { values, setValues, errors, isValid, handleChange } = useForm();
 
@@ -12,24 +17,27 @@ function SearchForm({ userList, getMovies }) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    getMovies(values.keywords, shortFilmsChecked);
+    searchMovie(values.keyword, shortFilmsChecked);
   }
 
   useEffect(() => {
-    if (!userList) {
+    if (isSearchingNewMovies) {
       if (localStorage.getItem("requeststorage")) {
-        const previousSearchResult = JSON.parse(localStorage.getItem("requeststorage"));
-        setValues({ ...values, keywords: previousSearchResult.keywords });
-        setShortFilmsChecked(previousSearchResult.shortFilmsChecked);
+        const { keyword, shortFilmsChecked } = JSON.parse(localStorage.getItem("requeststorage"));
+        setValues({ ...values, keyword: keyword });
+        setShortFilmsChecked(shortFilmsChecked);
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  // useEffect(() => {
+  //   uploadList(searchResult);
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [searchResult])
+
   useEffect(() => {
-    if (localStorage.getItem("requeststorage")) {
-      getMovies(values.keywords, shortFilmsChecked);
-    }
+    searchMovie(values.keyword, shortFilmsChecked);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [shortFilmsChecked])
 
@@ -42,8 +50,8 @@ function SearchForm({ userList, getMovies }) {
         <fieldset className="search-form__fieldset">
           <input
             className="search-form__input"
-            name="keywords"
-            value={values.keywords ? values.keywords : ""}
+            name="keyword"
+            value={values.keyword ? values.keyword : ""}
             placeholder="Фильм"
             type="text"
             required
@@ -53,7 +61,7 @@ function SearchForm({ userList, getMovies }) {
             type="submit"
             aria-label="Поиск."
             disabled={!isValid} />
-          <span className="search-form__error-message">{errors.keywords && 'Нужно ввести ключевое слово'}</span>
+          <span className="search-form__error-message">{errors.keyword && 'Нужно ввести ключевое слово'}</span>
         </fieldset>
         <FilterCheckbox checked={shortFilmsChecked} handleChange={handleCheckboxChange} />
       </form>

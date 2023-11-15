@@ -7,16 +7,18 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Preloader from "../Preloader/Preloader";
 import Footer from "../Footer/Footer";
 
-function SavedMovies(
-  { loggedIn,
-    error,
-    getMovies,
-    searchResult,
-    searchResultNotFound,
-    preloaderOn,
-    userMoviesList,
-    deleteMovie }
-) {
+function SavedMovies({
+  loggedIn,
+  searchMovie,
+  searchResult,
+  searchResultNotFound,
+  refreshResult,
+  userMoviesDatabase,
+  saveMovie,
+  deleteMovie,
+  errorMessage,
+  preloaderOn,
+}) {
   const {
     arrey,
     listLength,
@@ -44,9 +46,9 @@ function SavedMovies(
   }, []);
 
   useEffect(() => {
-    uploadList(userMoviesList);
+    refreshResult(userMoviesDatabase);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userMoviesList]);
+  }, [userMoviesDatabase])
 
   return (
     <>
@@ -54,22 +56,25 @@ function SavedMovies(
 
       <main className="main">
         <SearchForm
-          userList={true}
-          getMovies={getMovies} />
+          isSearchingNewMovies={false}
+          searchMovie={searchMovie}
+          searchResult={searchResult}
+          uploadList={uploadList} />
         <MoviesCardList
-          userList={true}
+          isSavedMovies={true}
           movies={arrey}
           listLength={listLength}
           uploadList={uploadList}
           searchResult={searchResult}
-          userMoviesList={userMoviesList}
+          userMoviesDatabase={userMoviesDatabase}
+          saveMovie={saveMovie}
           deleteMovie={deleteMovie} />
         <Preloader
-          uploaderOn={uploaderOn}
-          preloaderOn={preloaderOn}
-          handleUploader={handleUploader}
           searchResultNotFound={searchResultNotFound}
-          error={error} />
+          errorMessage={errorMessage}
+          preloaderOn={preloaderOn}
+          uploaderOn={uploaderOn}
+          handleUploader={handleUploader} />
       </main>
 
       <Footer />

@@ -4,7 +4,7 @@ import useForm from "../../hooks/useForm";
 import Header from "../Header/Header";
 import UserContext from "../../contexts/UserContext";
 
-function Profile({ loggedIn, handleLogOut, handleEditingUserProfile, error }) {
+function Profile({ loggedIn, handleLogOut, handleEditingUserProfile, errorMessage }) {
   const { values, setValues, errors, isValid, handleChange } = useForm();
   const userProfile = useContext(UserContext);
   const [editOn, setEditOn] = useState(false);
@@ -28,10 +28,10 @@ function Profile({ loggedIn, handleLogOut, handleEditingUserProfile, error }) {
   }, [])
 
   useEffect(() => {
-    if (error !== '') {
+    if (errorMessage !== '') {
       setEditOn(true);
     }
-  }, [error])
+  }, [errorMessage])
 
   return (
     <>
@@ -71,7 +71,7 @@ function Profile({ loggedIn, handleLogOut, handleEditingUserProfile, error }) {
           </label>
           {
             (editOn && !isValid) &&
-            <p className="profile__paragraph">{error}</p>
+            <p className="profile__paragraph">{errorMessage}</p>
           }
           {
             editOn

@@ -7,17 +7,18 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Preloader from "../Preloader/Preloader";
 import Footer from "../Footer/Footer";
 
-function Movies(
-  { loggedIn,
-    error,
-    getMovies,
-    searchResult,
-    searchResultNotFound,
-    preloaderOn,
-    userMoviesList,
-    saveMovie,
-    deleteMovie }
-) {
+function Movies({
+  loggedIn,
+  searchMovie,
+  searchResult,
+  searchResultNotFound,
+  userMoviesDatabase,
+  refreshResult,
+  saveMovie,
+  deleteMovie,
+  errorMessage,
+  preloaderOn,
+}) {
   const {
     arrey,
     listLength,
@@ -46,13 +47,13 @@ function Movies(
 
   useEffect(() => {
     if (localStorage.getItem("requeststorage")) {
-      const previousSearchResult = JSON.parse(localStorage.getItem("requeststorage"));
-      uploadList(previousSearchResult.newSearchResult);
+      const { movieslist } = JSON.parse(localStorage.getItem("requeststorage"));
+      refreshResult(movieslist);
     } else {
-      uploadList([]);
+      refreshResult([]);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [])
 
   return (
     <>
@@ -60,21 +61,25 @@ function Movies(
 
       <main className="main">
         <SearchForm
-          getMovies={getMovies} />
+          isSearchingNewMovies={true}
+          searchMovie={searchMovie}
+          searchResult={searchResult}
+          uploadList={uploadList} />
         <MoviesCardList
+          isSavedMovies={false}
           movies={arrey}
           listLength={listLength}
           uploadList={uploadList}
           searchResult={searchResult}
-          userMoviesList={userMoviesList}
+          userMoviesDatabase={userMoviesDatabase}
           saveMovie={saveMovie}
           deleteMovie={deleteMovie} />
         <Preloader
-          uploaderOn={uploaderOn}
-          preloaderOn={preloaderOn}
-          handleUploader={handleUploader}
           searchResultNotFound={searchResultNotFound}
-          error={error} />
+          errorMessage={errorMessage}
+          preloaderOn={preloaderOn}
+          uploaderOn={uploaderOn}
+          handleUploader={handleUploader} />
       </main>
 
       <Footer />

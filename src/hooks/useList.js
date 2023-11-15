@@ -17,6 +17,7 @@ function useList() {
         }
       } else {
         setUploaderOn(false);
+        setArrey([]);
       }
     }
 
@@ -45,7 +46,12 @@ function useList() {
       }
     }
 
-    return { arrey, listLength, uploaderOn, uploadList, handleUploader, adjustListWidth };
+    function reset() {
+      setArrey([]);
+      setUploaderOn(false);
+    }
+
+    return { arrey, listLength, uploaderOn, uploadList, handleUploader, adjustListWidth, reset };
 };
 
 export default useList;

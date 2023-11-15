@@ -18,18 +18,18 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 function App() {
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
   const [userProfile, setUserProfile] = useState({});
-  const [moviesList, setMoviesList] = useState([]);
-  const [userMoviesList, setUserMoviesList] = useState([]);
+  const [moviesDatabase, setMoviesDatabase] = useState([]);
+  const [userMoviesDatabase, setUserMoviesDatabase] = useState([]);
   const [searchResult, setSearchResult] = useState([]);
   const [searchResultNotFound, setSearchResultNotFound] = useState(false);
   const [preloaderOn, setPreloaderOn] = useState(false);
   const navigate = useNavigate();
 
   function handleError(error) {
-    setError(error);
+    setErrorMessage(error);
     console.log(error);
   }
 
@@ -48,7 +48,7 @@ function App() {
     mainApi.createUser(user)
       .then(() => {
         navigate("/signin", { replace: true });
-        setError("");
+        setErrorMessage("");
       })
       .catch((error) => {
         handleError(error);
@@ -65,7 +65,7 @@ function App() {
         getUserProfile();
         setLoggedIn(true);
         navigate("/movies", { replace: true });
-        setError("");
+        setErrorMessage("");
       })
       .catch((error) => {
         handleError(error);
@@ -97,7 +97,7 @@ function App() {
     mainApi.patchUser(user)
       .then((user) => {
         setUserProfile(user);
-        setError("");
+        setErrorMessage("");
       })
       .catch((error) => {
         handleError(error);
@@ -107,49 +107,57 @@ function App() {
       })
   }
 
-  function searchMovies(movies, keywords, shortFilmsChecked) {
-    const regex = new RegExp(keywords, "i");
+  function matchMovies(movies, keyword, shortFilmsChecked) {
+    const regex = new RegExp(keyword, "i");
 
     return movies.filter((movie) => {
-      const matchesKeywords =
+      const matcheskeyword =
         regex.test(movie.nameRU.toLowerCase()) ||
         regex.test(movie.nameEN.toLowerCase());
 
       if (shortFilmsChecked) {
-        return matchesKeywords && movie.duration <= 40;
+        return matcheskeyword && movie.duration <= 40;
       } else {
-        return matchesKeywords;
+        return matcheskeyword;
       }
     });
   };
 
-  function handleSearch(moviesList, keywords, shortFilmsChecked, userList = false) {
-    const newSearchResult = searchMovies(moviesList, keywords, shortFilmsChecked);
-    setSearchResult(newSearchResult);
+  function handleSearch(moviesDatabase, keyword, shortFilmsChecked, isSearchingNewMovies) {
+    const movieslist = matchMovies(moviesDatabase, keyword, shortFilmsChecked);
+    setSearchResult(movieslist);
 
-    if (!userList) {
+    if (isSearchingNewMovies) {
       const requestStorage = {
-        newSearchResult,
-        keywords,
+        movieslist,
+        keyword,
         shortFilmsChecked,
-      }
+      };
       localStorage.setItem("requeststorage", JSON.stringify(requestStorage));
     }
 
-    if (newSearchResult.length > 0) {
-      setSearchResultNotFound(false);
-    } else {
+    if (movieslist.length === 0) {
       setSearchResultNotFound(true);
-    };
+    }
   }
 
-  function getMoviesBeatfilm(keywords, shortFilmsChecked) {
+  function refreshResult(result) {
+    if (localStorage.getItem("requeststorage") && result.length === 0) {
+      setSearchResultNotFound(true);
+      setSearchResult(result);
+    } else {
+      setSearchResultNotFound(false);
+      setSearchResult(result);
+    }
+  }
+
+  function getMoviesBeatfilm(keyword, shortFilmsChecked) {
     setPreloaderOn(true);
     beatfilmMoviesApi.getMovies()
-      .then((moviesList) => {
-        handleSearch(moviesList, keywords, shortFilmsChecked);
-        setMoviesList(moviesList);
-        setError("");
+      .then((moviesDatabase) => {
+        handleSearch(moviesDatabase, keyword, shortFilmsChecked, true);
+        setMoviesDatabase(moviesDatabase);
+        setErrorMessage("");
       })
       .catch((error) => {
         handleError(error);
@@ -160,25 +168,24 @@ function App() {
       })
   };
 
-  function getMovies(keywords = "", shortFilmsChecked) {
-    if (keywords.trim() !== "") {
-      localStorage.removeItem("requeststorage");
-      if (moviesList.length !== 0) {
-        handleSearch(moviesList, keywords, shortFilmsChecked)
+  function searchMovie(keyword = "", shortFilmsChecked) {
+    if (keyword.trim() !== "") {
+      setSearchResultNotFound(false);
+      if (moviesDatabase.length !== 0) {
+        handleSearch(moviesDatabase, keyword, shortFilmsChecked, true)
       } else {
-        getMoviesBeatfilm();
+        getMoviesBeatfilm(keyword, shortFilmsChecked);
       }
-    } else {
-      return;
     }
   };
 
-  function getUserMovies(keywords = "", shortFilmsChecked) {
+  function searchUserMovies(keyword = "", shortFilmsChecked) {
     setPreloaderOn(true);
+    setSearchResultNotFound(false);
     moviesApi.getMovies()
-      .then((moviesList) => {
-        handleSearch(moviesList, keywords, shortFilmsChecked, true)
-        setError("");
+      .then((moviesDatabase) => {
+        handleSearch(moviesDatabase, keyword, shortFilmsChecked)
+        setErrorMessage("");
       })
       .catch((error) => {
         handleError(error);
@@ -189,10 +196,10 @@ function App() {
       })
   };
 
-  function getUserMoviesList() {
+  function getUserMoviesDatabase() {
     moviesApi.getMovies()
-      .then((moviesList) => {
-        setUserMoviesList(moviesList);
+      .then((moviesDatabase) => {
+        setUserMoviesDatabase(moviesDatabase);
       })
       .catch((error) => {
         handleError(error);
@@ -202,7 +209,7 @@ function App() {
   function saveMovie(movie) {
     moviesApi.postMovie(movie)
       .then((newMovie) => {
-        setUserMoviesList([...userMoviesList, newMovie]);
+        setUserMoviesDatabase([...userMoviesDatabase, newMovie]);
       })
       .catch((error) => {
         handleError(error);
@@ -210,13 +217,13 @@ function App() {
   }
 
   function deleteMovie(id) {
-    const targetMovie = userMoviesList.find((movie) => {
+    const targetMovie = userMoviesDatabase.find((movie) => {
       return movie.id === id;
     })
     moviesApi.deleteMovie(targetMovie._id)
       .then(() => {
-        setUserMoviesList((userMoviesList) => {
-          return userMoviesList.filter((movie) => {
+        setUserMoviesDatabase((userMoviesDatabase) => {
+          return userMoviesDatabase.filter((movie) => {
             return movie._id !== targetMovie._id;
           })
         });
@@ -228,12 +235,12 @@ function App() {
 
   useEffect(() => {
     setLoading(true);
-    setError("");
+    setErrorMessage("");
     mainApi.getUser()
       .then((user) => {
         setUserProfile(user);
         setLoggedIn(true);
-        getUserMoviesList();
+        getUserMoviesDatabase();
       })
       .catch(() => {
         setLoggedIn(false);
@@ -262,50 +269,53 @@ function App() {
 
           <Route path="/movies" element={<ProtectedRoute
             element={Movies}
+            redirectPath="/signin"
             loggedIn={loggedIn}
-            path="/signin"
-            error={error}
-            getMovies={getMovies}
+            searchMovie={searchMovie}
             searchResult={searchResult}
             searchResultNotFound={searchResultNotFound}
-            preloaderOn={preloaderOn}
-            userMoviesList={userMoviesList}
+            refreshResult={refreshResult}
+            userMoviesDatabase={userMoviesDatabase}
             saveMovie={saveMovie}
-            deleteMovie={deleteMovie} />} />
+            deleteMovie={deleteMovie}
+            errorMessage={errorMessage}
+            preloaderOn={preloaderOn} />} />
 
           <Route path="/saved-movies" element={<ProtectedRoute
             element={SavedMovies}
+            redirectPath="/signin"
             loggedIn={loggedIn}
-            path="/signin"
-            error={error}
-            getMovies={getUserMovies}
+            searchMovie={searchUserMovies}
             searchResult={searchResult}
             searchResultNotFound={searchResultNotFound}
-            preloaderOn={preloaderOn}
-            userMoviesList={userMoviesList}
-            deleteMovie={deleteMovie} />} />
+            refreshResult={refreshResult}
+            userMoviesDatabase={userMoviesDatabase}
+            saveMovie={saveMovie}
+            deleteMovie={deleteMovie}
+            errorMessage={errorMessage}
+            preloaderOn={preloaderOn} />} />
 
           <Route path="/profile" element={<ProtectedRoute
             element={Profile}
+            redirectPath="/signin"
             loggedIn={loggedIn}
-            path="/signin"
-            error={error}
+            errorMessage={errorMessage}
             handleLogOut={handleLogOut}
             handleEditingUserProfile={handleEditingUserProfile} />} />
 
           <Route path="/signin" element={<ProtectedRoute
             element={Login}
+            redirectPath="/movies"
             loggedIn={!loggedIn}
-            path="/movies"
-            error={error}
+            errorMessage={errorMessage}
             handleLogIn={handleLogIn}
             preloaderOn={preloaderOn} />} />
 
           <Route path="/signup" element={<ProtectedRoute
             element={Register}
+            redirectPath="/movies"
             loggedIn={!loggedIn}
-            path="/movies"
-            error={error}
+            errorMessage={errorMessage}
             handleRegister={handleRegister}
             preloaderOn={preloaderOn} />} />
 

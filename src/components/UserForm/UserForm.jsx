@@ -3,7 +3,7 @@ import useForm from '../../hooks/useForm';
 
 import Logo from '../Logo/Logo';
 
-function UserForm({ signup, heading, error, submitButtonLabel, handleUserForm }) {
+function UserForm({ signup, heading, errorMessage, submitButtonLabel, handleUserForm }) {
   const { values, errors, isValid, handleChange, resetForm } = useForm();
 
   function handleSubmit(event) {
@@ -60,8 +60,8 @@ function UserForm({ signup, heading, error, submitButtonLabel, handleUserForm })
           <span className="user-form__error-message">{errors.password}</span>
         </label>
         {
-          error &&
-          <p className="user-form__error-message user-form__error-message_type_server">{error}</p>
+          errorMessage &&
+          <p className="user-form__error-message user-form__error-message_type_server">{errorMessage}</p>
         }
         <button
           className={`user-form__button ${!isValid && "user-form__button_disabled"}`}
