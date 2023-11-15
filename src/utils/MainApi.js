@@ -19,6 +19,7 @@ class MainApi extends Api {
   }
 
   getUser() {
+    console.log(super.baseUrl)
     return super._sendRequest("GET", false, "/users/me");
   }
 
@@ -28,7 +29,7 @@ class MainApi extends Api {
 };
 
 const mainApi = new MainApi({
-  BASE_URL_MAIN,
+  baseUrl: BASE_URL_MAIN,
   headers: {
     "Accept": "application/json",
     "Content-Type": "application/json",

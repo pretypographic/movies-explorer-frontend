@@ -21,7 +21,7 @@ class BeatfilmMoviesApi extends Api {
 };
 
 const beatfilmMoviesApi = new BeatfilmMoviesApi({
-  BASE_URL_BF,
+  baseUrl: BASE_URL_BF,
   headers: {
     "Accept": "application/json",
     "Content-Type": "application/json",

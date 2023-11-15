@@ -20,7 +20,7 @@ class MoviesApi extends Api {
 };
 
 const moviesApi = new MoviesApi({
-  BASE_URL_MOVIES,
+  baseUrl: BASE_URL_MOVIES,
   headers: {
     "Accept": "application/json",
     "Content-Type": "application/json",
