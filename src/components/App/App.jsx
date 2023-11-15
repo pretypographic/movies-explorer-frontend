@@ -21,6 +21,7 @@ function App() {
   const [error, setError] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
   const [userProfile, setUserProfile] = useState({});
+  const [moviesList, setMoviesList] = useState([]);
   const [userMoviesList, setUserMoviesList] = useState([]);
   const [searchResult, setSearchResult] = useState([]);
   const [searchResultNotFound, setSearchResultNotFound] = useState(false);
@@ -80,9 +81,7 @@ function App() {
       .then(() => {
         setUserProfile({});
         setLoggedIn(false);
-        localStorage.removeItem("movieslist");
-        localStorage.removeItem("keywords");
-        localStorage.removeItem("shortfilmschecked");
+        localStorage.removeItem("requeststorage");
         navigate("/", { replace: true });
       })
       .catch((error) => {
@@ -124,35 +123,51 @@ function App() {
     });
   };
 
+  function handleSearch(moviesList, keywords, shortFilmsChecked, userList = false) {
+    const newSearchResult = searchMovies(moviesList, keywords, shortFilmsChecked);
+    setSearchResult(newSearchResult);
+
+    if (!userList) {
+      const requestStorage = {
+        newSearchResult,
+        keywords,
+        shortFilmsChecked,
+      }
+      localStorage.setItem("requeststorage", JSON.stringify(requestStorage));
+    }
+
+    if (newSearchResult.length > 0) {
+      setSearchResultNotFound(false);
+    } else {
+      setSearchResultNotFound(true);
+    };
+  }
+
+  function getMoviesBeatfilm(keywords, shortFilmsChecked) {
+    setPreloaderOn(true);
+    beatfilmMoviesApi.getMovies()
+      .then((moviesList) => {
+        handleSearch(moviesList, keywords, shortFilmsChecked);
+        setMoviesList(moviesList);
+        setError("");
+      })
+      .catch((error) => {
+        handleError(error);
+        setSearchResultNotFound(false);
+      })
+      .finally(() => {
+        setPreloaderOn(false);
+      })
+  };
+
   function getMovies(keywords = "", shortFilmsChecked) {
     if (keywords.trim() !== "") {
-      localStorage.removeItem("movieslist");
-      localStorage.removeItem("keywords");
-      localStorage.removeItem("shortfilmschecked");
-      setPreloaderOn(true);
-      beatfilmMoviesApi.getMovies()
-        .then((moviesList) => {
-          const newSearchResult = searchMovies(moviesList, keywords, shortFilmsChecked);
-          setSearchResult(newSearchResult);
-
-          localStorage.setItem("movieslist", JSON.stringify(newSearchResult));
-          localStorage.setItem("keywords", keywords);
-          localStorage.setItem("shortfilmschecked", shortFilmsChecked);
-
-          if (newSearchResult.length > 0) {
-            setSearchResultNotFound(false);
-          } else {
-            setSearchResultNotFound(true);
-          };
-          setError("");
-        })
-        .catch((error) => {
-          handleError(error);
-          setSearchResultNotFound(false);
-        })
-        .finally(() => {
-          setPreloaderOn(false);
-        })
+      localStorage.removeItem("requeststorage");
+      if (moviesList.length !== 0) {
+        handleSearch(moviesList, keywords, shortFilmsChecked)
+      } else {
+        getMoviesBeatfilm();
+      }
     } else {
       return;
     }
@@ -162,14 +177,7 @@ function App() {
     setPreloaderOn(true);
     moviesApi.getMovies()
       .then((moviesList) => {
-        const newSearchResult = searchMovies(moviesList, keywords, shortFilmsChecked);
-        setSearchResult(newSearchResult);
-
-        if (newSearchResult.length > 0) {
-          setSearchResultNotFound(false);
-        } else {
-          setSearchResultNotFound(true);
-        };
+        handleSearch(moviesList, keywords, shortFilmsChecked, true)
         setError("");
       })
       .catch((error) => {

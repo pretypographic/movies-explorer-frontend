@@ -45,9 +45,11 @@ function Movies(
   }, []);
 
   useEffect(() => {
-    if (localStorage.getItem("movieslist")) {
-      const previousList = JSON.parse(localStorage.getItem("movieslist"));
-      uploadList(previousList);
+    if (localStorage.getItem("requeststorage")) {
+      const previousSearchResult = JSON.parse(localStorage.getItem("requeststorage"));
+      uploadList(previousSearchResult.newSearchResult);
+    } else {
+      uploadList([]);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -57,7 +59,8 @@ function Movies(
       <Header loggedIn={loggedIn} />
 
       <main className="main">
-        <SearchForm getMovies={getMovies} />
+        <SearchForm
+          getMovies={getMovies} />
         <MoviesCardList
           movies={arrey}
           listLength={listLength}

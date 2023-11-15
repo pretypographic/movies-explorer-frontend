@@ -17,20 +17,19 @@ function SearchForm({ userList, getMovies }) {
 
   useEffect(() => {
     if (!userList) {
-      if (localStorage.getItem("keywords")) {
-        const savedKeyword = localStorage.getItem("keywords");
-        setValues({ ...values, keywords: savedKeyword });
-      }
-      if (localStorage.getItem("shortfilmschecked")) {
-        const previousState = JSON.parse(localStorage.getItem("shortfilmschecked"));
-        setShortFilmsChecked(previousState);
+      if (localStorage.getItem("requeststorage")) {
+        const previousSearchResult = JSON.parse(localStorage.getItem("requeststorage"));
+        setValues({ ...values, keywords: previousSearchResult.keywords });
+        setShortFilmsChecked(previousSearchResult.shortFilmsChecked);
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
-    getMovies(values.keywords, shortFilmsChecked);
+    if (localStorage.getItem("requeststorage")) {
+      getMovies(values.keywords, shortFilmsChecked);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [shortFilmsChecked])
 
