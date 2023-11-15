@@ -1,7 +1,5 @@
 import Api from "./Api"
-
-// const baseUrl = "https://api.cu2ewa.nomoredomainsrocks.ru/movies";
-const baseUrl = "http://localhost:5000/movies";
+import { BASE_URL_MOVIES } from "./constants";
 
 class MoviesApi extends Api {
   constructor({baseUrl, headers}) {
@@ -22,7 +20,7 @@ class MoviesApi extends Api {
 };
 
 const moviesApi = new MoviesApi({
-  baseUrl,
+  BASE_URL_MOVIES,
   headers: {
     "Accept": "application/json",
     "Content-Type": "application/json",

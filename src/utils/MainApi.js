@@ -1,7 +1,5 @@
 import Api from "./Api"
-
-// const baseUrl = "https://api.cu2ewa.nomoredomainsrocks.ru";
-const baseUrl = "http://localhost:5000";
+import { BASE_URL_MAIN } from "./constants";
 
 class MainApi extends Api {
   constructor({baseUrl, headers}) {
@@ -30,7 +28,7 @@ class MainApi extends Api {
 };
 
 const mainApi = new MainApi({
-  baseUrl,
+  BASE_URL_MAIN,
   headers: {
     "Accept": "application/json",
     "Content-Type": "application/json",

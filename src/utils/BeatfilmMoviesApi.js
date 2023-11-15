@@ -1,6 +1,5 @@
 import Api from "./Api"
-
-const baseUrl = "https://api.nomoreparties.co/beatfilm-movies"
+import { BASE_URL_BF } from "./constants";
 
 class BeatfilmMoviesApi extends Api {
   constructor({baseUrl, headers}) {
@@ -22,7 +21,7 @@ class BeatfilmMoviesApi extends Api {
 };
 
 const beatfilmMoviesApi = new BeatfilmMoviesApi({
-  baseUrl,
+  BASE_URL_BF,
   headers: {
     "Accept": "application/json",
     "Content-Type": "application/json",

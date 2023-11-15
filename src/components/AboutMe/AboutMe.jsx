@@ -1,5 +1,4 @@
-// import photo from '../../images/photo_2023-10-04_23-39-43.jpg';
-import photo from '../../images/pic__COLOR_pic.png'
+import photo from '../../images/photo_2023-10-04_23-39-43.jpg';
 import Portfolio from '../Portfolio/Portfolio';
 
 function AboutMe() {
@@ -8,13 +7,18 @@ function AboutMe() {
       <h2 className="about-me__title">Студент</h2>
       <article className="about-me__article">
         <div className="about-me__experience">
-          <h3 className="about-me__name">Виталий</h3>
-          <h4 className="about-me__subtitle">Фронтенд-разработчик, 30 лет</h4>
-          <p className="about-me__text">Я родился и живу в Саратове, закончил 
-          факультет экономики СГУ. У меня есть жена и дочь. Я люблю слушать музыку, 
-          а ещё увлекаюсь бегом. Недавно начал кодить. С 2015 года работал в 
-          компании «СКБ Контур». После того, как прошёл курс по веб-разработке, 
-          начал заниматься фриланс-заказами и ушёл с постоянной работы.</p>
+        <h3 className="about-me__name">Песвианидзе Александр</h3>
+          <h4 className="about-me__subtitle">web-разработчик, 30 лет</h4>
+          <p className="about-me__text">Мой профессиональный путь начался
+            в&nbsp;области кинорежиссуры, но&nbsp;со&nbsp;временем
+            я&nbsp;переключился на&nbsp;разработку настольных игр. Мой опыт также
+            охватывает администрирование театральной деятельности, работу
+            в&nbsp;студии дубляжа и&nbsp;участие в&nbsp;художественных
+            и&nbsp;арт&minus;проектах. Мое образование включает в&nbsp;себя курсы
+            веб&minus;разработки в&nbsp;Yandex Practicum и&nbsp;курсы разработки игр
+            в&nbsp;Школе дизайна Высшей школы экономики. Разнообразный опыт помогает
+            мне креативно подходить к&nbsp;разработке приложений и&nbsp;создавать
+            привлекательные и&nbsp;функциональные проекты.</p>
           <a
             href="https://github.com/pretypographic"
             className="about-me__link"

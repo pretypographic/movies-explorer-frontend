@@ -1,6 +1,7 @@
 # movies-explorer-frontend
 
 Макет: dark-2
+Pull requeast: [https://github.com/pretypographic/movies-explorer-frontend/pull/16](https://github.com/pretypographic/movies-explorer-frontend/pull/16)
 
 ## Описание
 
