@@ -2,7 +2,16 @@ import { useEffect } from "react";
 
 import MoviesCard from "../MoviesCard/MoviesCard";
 
-function MoviesCardList({ userList, movies, listLength, uploadList, searchResult }) {
+function MoviesCardList(
+  { userList,
+    movies,
+    listLength,
+    uploadList,
+    searchResult,
+    userMoviesList,
+    saveMovie,
+    deleteMovie }
+) {
   useEffect(() => {
     uploadList(searchResult);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -13,10 +22,20 @@ function MoviesCardList({ userList, movies, listLength, uploadList, searchResult
       {
         userList
           ? movies.map((movie, id) => (
-            movie.saved && <MoviesCard userList={userList} movie={movie} key={id} />
+            <MoviesCard
+              userList={userList}
+              key={id}
+              movie={movie}
+              userMoviesList={userMoviesList}
+              deleteMovie={deleteMovie} />
           ))
           : movies.map((movie, id) => (
-            <MoviesCard key={id} movie={movie} />
+            <MoviesCard
+              key={id}
+              movie={movie}
+              userMoviesList={userMoviesList}
+              saveMovie={saveMovie}
+              deleteMovie={deleteMovie} />
           ))
       }
     </section>

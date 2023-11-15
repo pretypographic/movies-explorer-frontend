@@ -1,4 +1,8 @@
-function MoviesCard({ userList, movie }) {
+import { useEffect, useState } from "react";
+
+function MoviesCard({ userList, movie, userMoviesList, saveMovie, deleteMovie }) {
+  const [movieSaved, setMovieSaved] = useState(false);
+
   function formatDuration(duration) {
     const hours = Math.floor(duration / 60);
     const minutes = duration % 60;
@@ -9,6 +13,21 @@ function MoviesCard({ userList, movie }) {
       return `${minutes}м`;
     };
   };
+
+  function handleSaveMovieClick() {
+    saveMovie(movie);
+  }
+
+  function handleDaleteMovieClick() {
+    deleteMovie(movie.id);
+  }
+
+  useEffect(() => {
+    setMovieSaved(userMoviesList.some((savedMovie) => {
+      return savedMovie.id === movie.id;
+    }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userMoviesList])
 
   return (
     <div className="movies-card">
@@ -28,16 +47,19 @@ function MoviesCard({ userList, movie }) {
           ? <button
             className="movies-card__button movies-card__button_type_delete"
             type="button"
-            aria-label="Убрать из избранного?" />
-          : movie.saved
+            aria-label="Убрать из избранного?"
+            onClick={handleDaleteMovieClick} />
+          : movieSaved
             ? <button
               className="movies-card__button movies-card__button_type_saved"
               type="button"
-              aria-label="Убрать из избранного?" />
+              aria-label="Убрать из избранного?"
+              onClick={handleDaleteMovieClick} />
             : <button
               className="movies-card__button"
               type="button"
-              aria-label="Сохранить?">Сохранить</button>
+              aria-label="Сохранить?"
+              onClick={handleSaveMovieClick}>Сохранить</button>
       }
     </div >
   )

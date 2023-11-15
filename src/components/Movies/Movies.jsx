@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import useList from "../../hooks/useList";
 
 import Header from "../Header/Header";
@@ -5,9 +6,18 @@ import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Preloader from "../Preloader/Preloader";
 import Footer from "../Footer/Footer";
-import { useEffect } from "react";
 
-function Movies({ loggedIn, error, getMovies, searchResult, searchResultNotFound, preloaderOn }) {
+function Movies(
+  { loggedIn,
+    error,
+    getMovies,
+    searchResult,
+    searchResultNotFound,
+    preloaderOn,
+    userMoviesList,
+    saveMovie,
+    deleteMovie }
+) {
   const {
     arrey,
     listLength,
@@ -27,9 +37,9 @@ function Movies({ loggedIn, error, getMovies, searchResult, searchResultNotFound
     };
 
     adjustListWidth(window.innerWidth);
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -39,7 +49,7 @@ function Movies({ loggedIn, error, getMovies, searchResult, searchResultNotFound
       const previousList = JSON.parse(localStorage.getItem("movieslist"));
       uploadList(previousList);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -52,7 +62,10 @@ function Movies({ loggedIn, error, getMovies, searchResult, searchResultNotFound
           movies={arrey}
           listLength={listLength}
           uploadList={uploadList}
-          searchResult={searchResult} />
+          searchResult={searchResult}
+          userMoviesList={userMoviesList}
+          saveMovie={saveMovie}
+          deleteMovie={deleteMovie} />
         <Preloader
           uploaderOn={uploaderOn}
           preloaderOn={preloaderOn}

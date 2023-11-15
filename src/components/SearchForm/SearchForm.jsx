@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import useForm from "../../hooks/useForm";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 
-function SearchForm({ getMovies }) {
+function SearchForm({ userList, getMovies }) {
   const [shortFilmsChecked, setShortFilmsChecked] = useState(false);
   const { values, setValues, errors, isValid, handleChange } = useForm();
 
@@ -16,13 +16,15 @@ function SearchForm({ getMovies }) {
   }
 
   useEffect(() => {
-    if (localStorage.getItem("keywords")) {
-      const savedKeyword = localStorage.getItem("keywords");
-      setValues({ ...values, keywords: savedKeyword });
-    }
-    if (localStorage.getItem("shortfilmschecked")) {
-      const previousState = JSON.parse(localStorage.getItem("shortfilmschecked"));
-      setShortFilmsChecked(previousState);
+    if (!userList) {
+      if (localStorage.getItem("keywords")) {
+        const savedKeyword = localStorage.getItem("keywords");
+        setValues({ ...values, keywords: savedKeyword });
+      }
+      if (localStorage.getItem("shortfilmschecked")) {
+        const previousState = JSON.parse(localStorage.getItem("shortfilmschecked"));
+        setShortFilmsChecked(previousState);
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])

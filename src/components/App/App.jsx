@@ -3,6 +3,7 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 
 import UserContext from "../../contexts/UserContext"
 import mainApi from "../../utils/MainApi";
+import moviesApi from "../../utils/MoviesApi";
 import beatfilmMoviesApi from "../../utils/BeatfilmMoviesApi";
 
 import Preloader from "../Preloader/Preloader";
@@ -17,9 +18,10 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 function App() {
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
   const [userProfile, setUserProfile] = useState({});
+  const [userMoviesList, setUserMoviesList] = useState([]);
   const [searchResult, setSearchResult] = useState([]);
   const [searchResultNotFound, setSearchResultNotFound] = useState(false);
   const [preloaderOn, setPreloaderOn] = useState(false);
@@ -45,7 +47,7 @@ function App() {
     mainApi.createUser(user)
       .then(() => {
         navigate("/signin", { replace: true });
-        setError('');
+        setError("");
       })
       .catch((error) => {
         handleError(error);
@@ -62,7 +64,7 @@ function App() {
         getUserProfile();
         setLoggedIn(true);
         navigate("/movies", { replace: true });
-        setError('');
+        setError("");
       })
       .catch((error) => {
         handleError(error);
@@ -96,7 +98,7 @@ function App() {
     mainApi.patchUser(user)
       .then((user) => {
         setUserProfile(user);
-        setError('');
+        setError("");
       })
       .catch((error) => {
         handleError(error);
@@ -130,18 +132,19 @@ function App() {
       setPreloaderOn(true);
       beatfilmMoviesApi.getMovies()
         .then((moviesList) => {
-          console.log(moviesList[0]);
           const newSearchResult = searchMovies(moviesList, keywords, shortFilmsChecked);
           setSearchResult(newSearchResult);
+
           localStorage.setItem("movieslist", JSON.stringify(newSearchResult));
           localStorage.setItem("keywords", keywords);
           localStorage.setItem("shortfilmschecked", shortFilmsChecked);
+
           if (newSearchResult.length > 0) {
             setSearchResultNotFound(false);
           } else {
             setSearchResultNotFound(true);
           };
-          setError('');
+          setError("");
         })
         .catch((error) => {
           handleError(error);
@@ -155,12 +158,74 @@ function App() {
     }
   };
 
+  function getUserMovies(keywords = "", shortFilmsChecked) {
+    setPreloaderOn(true);
+    moviesApi.getMovies()
+      .then((moviesList) => {
+        const newSearchResult = searchMovies(moviesList, keywords, shortFilmsChecked);
+        setSearchResult(newSearchResult);
+
+        if (newSearchResult.length > 0) {
+          setSearchResultNotFound(false);
+        } else {
+          setSearchResultNotFound(true);
+        };
+        setError("");
+      })
+      .catch((error) => {
+        handleError(error);
+        setSearchResultNotFound(false);
+      })
+      .finally(() => {
+        setPreloaderOn(false);
+      })
+  };
+
+  function getUserMoviesList() {
+    moviesApi.getMovies()
+      .then((moviesList) => {
+        setUserMoviesList(moviesList);
+      })
+      .catch((error) => {
+        handleError(error);
+      })
+  }
+
+  function saveMovie(movie) {
+    moviesApi.postMovie(movie)
+      .then((newMovie) => {
+        setUserMoviesList([...userMoviesList, newMovie]);
+      })
+      .catch((error) => {
+        handleError(error);
+      })
+  }
+
+  function deleteMovie(id) {
+    const targetMovie = userMoviesList.find((movie) => {
+      return movie.id === id;
+    })
+    moviesApi.deleteMovie(targetMovie._id)
+      .then(() => {
+        setUserMoviesList((userMoviesList) => {
+          return userMoviesList.filter((movie) => {
+            return movie._id !== targetMovie._id;
+          })
+        });
+      })
+      .catch((error) => {
+        handleError(error);
+      })
+  }
+
   useEffect(() => {
     setLoading(true);
+    setError("");
     mainApi.getUser()
       .then((user) => {
         setUserProfile(user);
         setLoggedIn(true);
+        getUserMoviesList();
       })
       .catch(() => {
         setLoggedIn(false);
@@ -168,11 +233,8 @@ function App() {
       .finally(() => {
         setLoading(false);
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  useEffect(() => {
-    console.log(userProfile);
-  }, [userProfile])
 
   if (loading) {
     return (
@@ -198,12 +260,22 @@ function App() {
             getMovies={getMovies}
             searchResult={searchResult}
             searchResultNotFound={searchResultNotFound}
-            preloaderOn={preloaderOn} />} />
+            preloaderOn={preloaderOn}
+            userMoviesList={userMoviesList}
+            saveMovie={saveMovie}
+            deleteMovie={deleteMovie} />} />
 
           <Route path="/saved-movies" element={<ProtectedRoute
             element={SavedMovies}
             loggedIn={loggedIn}
-            path="/signin" />} />
+            path="/signin"
+            error={error}
+            getMovies={getUserMovies}
+            searchResult={searchResult}
+            searchResultNotFound={searchResultNotFound}
+            preloaderOn={preloaderOn}
+            userMoviesList={userMoviesList}
+            deleteMovie={deleteMovie} />} />
 
           <Route path="/profile" element={<ProtectedRoute
             element={Profile}
