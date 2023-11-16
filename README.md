@@ -2,6 +2,7 @@
 
 Макет: dark-2
 Pull requeast: [https://github.com/pretypographic/movies-explorer-frontend/pull/16](https://github.com/pretypographic/movies-explorer-frontend/pull/16)
+Ссылка на развернутый проект: [https://cu2ewa.nomoredomainsrocks.ru](https://cu2ewa.nomoredomainsrocks.ru)
 
 ## Описание
 
