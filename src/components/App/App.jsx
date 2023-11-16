@@ -21,6 +21,7 @@ function App() {
   const [errorMessage, setErrorMessage] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
   const [userProfile, setUserProfile] = useState({});
+  const [editingSuccessful, setEditingSuccessful] = useState(false);
   const [moviesDatabase, setMoviesDatabase] = useState([]);
   const [userMoviesDatabase, setUserMoviesDatabase] = useState([]);
   const [searchResult, setSearchResult] = useState([]);
@@ -97,6 +98,7 @@ function App() {
     mainApi.patchUser(user)
       .then((user) => {
         setUserProfile(user);
+        setEditingSuccessful(true);
         setErrorMessage("");
       })
       .catch((error) => {
@@ -251,6 +253,16 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    if (editingSuccessful) {
+      const timer = setTimeout(() => {
+        setEditingSuccessful(false);
+      }, 5000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [editingSuccessful]);
+
   if (loading) {
     return (
       <div className="app">
@@ -299,6 +311,7 @@ function App() {
             element={Profile}
             redirectPath="/signin"
             loggedIn={loggedIn}
+            editingSuccessful={editingSuccessful}
             errorMessage={errorMessage}
             handleLogOut={handleLogOut}
             handleEditingUserProfile={handleEditingUserProfile} />} />

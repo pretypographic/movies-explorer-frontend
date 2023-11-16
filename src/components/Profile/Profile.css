@@ -26,7 +26,7 @@
 }
 
 .profile__paragraph {
-  color: #FF004C;
+  color: #FFF;
   display: none;
   margin: 0 0 20px;  
   font-size: 11px;
@@ -34,6 +34,14 @@
   font-weight: 500;
   line-height: normal;
   font-weight: 400;
+}
+
+.profile__paragraph_color_red {
+  color: #FF004C;
+}
+
+.profile__paragraph_color_green {
+  color: green;
 }
 
 .profile__label {

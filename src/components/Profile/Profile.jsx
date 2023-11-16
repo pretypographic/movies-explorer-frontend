@@ -4,7 +4,13 @@ import useForm from "../../hooks/useForm";
 import Header from "../Header/Header";
 import UserContext from "../../contexts/UserContext";
 
-function Profile({ loggedIn, handleLogOut, handleEditingUserProfile, errorMessage }) {
+function Profile({
+  loggedIn,
+  editingSuccessful,
+  errorMessage,
+  handleLogOut,
+  handleEditingUserProfile,
+}) {
   const { values, setValues, errors, isValid, handleChange } = useForm();
   const userProfile = useContext(UserContext);
   const [editOn, setEditOn] = useState(false);
@@ -70,10 +76,13 @@ function Profile({ loggedIn, handleLogOut, handleEditingUserProfile, errorMessag
             <span className="profile__error-message">{errors.email}</span>
           </label>
           {
-            (editOn && !isValid) &&
-            <p className="profile__paragraph">{errorMessage}</p>
+            editingSuccessful &&
+            <p className="profile__paragraph profile__paragraph_color_green">Профиль успешно обновлен!</p>
           }
           {
+            (editOn && !isValid) &&
+            <p className="profile__paragraph profile__paragraph_color_red">{errorMessage}</p>
+          } {
             editOn
               ? <button
                 className={`profile__button profile__button_assignment_submit ${!isValid && "profile__button_disabled"}`}

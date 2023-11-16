@@ -62,9 +62,7 @@ function Movies({
       <main className="main">
         <SearchForm
           isSearchingNewMovies={true}
-          searchMovie={searchMovie}
-          searchResult={searchResult}
-          uploadList={uploadList} />
+          searchMovie={searchMovie} />
         <MoviesCardList
           isSavedMovies={false}
           movies={arrey}

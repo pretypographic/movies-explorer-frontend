@@ -5,8 +5,6 @@ import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 function SearchForm({
   isSearchingNewMovies,
   searchMovie,
-  searchResult,
-  uploadList,
 }) {
   const [shortFilmsChecked, setShortFilmsChecked] = useState(false);
   const { values, setValues, errors, isValid, handleChange } = useForm();
@@ -30,11 +28,6 @@ function SearchForm({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-
-  // useEffect(() => {
-  //   uploadList(searchResult);
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [searchResult])
 
   useEffect(() => {
     searchMovie(values.keyword, shortFilmsChecked);
