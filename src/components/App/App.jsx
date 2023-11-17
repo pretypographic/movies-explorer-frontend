@@ -17,7 +17,7 @@ import NotFound from "../NotFound/NotFound";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 function App() {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
   const [userProfile, setUserProfile] = useState({});
@@ -48,7 +48,9 @@ function App() {
     setLoading(true);
     mainApi.createUser(user)
       .then(() => {
-        navigate("/signin", { replace: true });
+        getUserProfile();
+        setLoggedIn(true);
+        navigate("/movies", { replace: true });
         setErrorMessage("");
       })
       .catch((error) => {
@@ -281,7 +283,7 @@ function App() {
 
           <Route path="/movies" element={<ProtectedRoute
             element={Movies}
-            redirectPath="/signin"
+            redirectPath="/"
             loggedIn={loggedIn}
             searchMovie={searchMovie}
             searchResult={searchResult}
@@ -295,7 +297,7 @@ function App() {
 
           <Route path="/saved-movies" element={<ProtectedRoute
             element={SavedMovies}
-            redirectPath="/signin"
+            redirectPath="/"
             loggedIn={loggedIn}
             searchMovie={searchUserMovies}
             searchResult={searchResult}
@@ -309,7 +311,7 @@ function App() {
 
           <Route path="/profile" element={<ProtectedRoute
             element={Profile}
-            redirectPath="/signin"
+            redirectPath="/"
             loggedIn={loggedIn}
             editingSuccessful={editingSuccessful}
             errorMessage={errorMessage}
@@ -318,7 +320,7 @@ function App() {
 
           <Route path="/signin" element={<ProtectedRoute
             element={Login}
-            redirectPath="/movies"
+            redirectPath="/"
             loggedIn={!loggedIn}
             errorMessage={errorMessage}
             handleLogIn={handleLogIn}
@@ -326,7 +328,7 @@ function App() {
 
           <Route path="/signup" element={<ProtectedRoute
             element={Register}
-            redirectPath="/movies"
+            redirectPath="/"
             loggedIn={!loggedIn}
             errorMessage={errorMessage}
             handleRegister={handleRegister}

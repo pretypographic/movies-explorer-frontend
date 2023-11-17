@@ -12,8 +12,9 @@ function Profile({
   handleEditingUserProfile,
 }) {
   const { values, setValues, errors, isValid, handleChange } = useForm();
-  const userProfile = useContext(UserContext);
+  const { name, email } = useContext(UserContext);
   const [editOn, setEditOn] = useState(false);
+  const [hasChanges, setHasChanges] = useState(false);
 
   function handleEdit() {
     setEditOn(true);
@@ -25,13 +26,20 @@ function Profile({
   }
 
   useEffect(() => {
-    const { name, email } = userProfile;
     setValues({
       name: name,
       email: email,
     })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  useEffect(() => {
+    const hasChanges =
+      values.name !== name ||
+      values.email !== email;
+    setHasChanges(hasChanges);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [values]);
 
   useEffect(() => {
     if (errorMessage !== '') {
@@ -44,9 +52,9 @@ function Profile({
       <Header loggedIn={loggedIn} />
 
       <main className="profile">
-        <h1 className="profile__title">{`Привет, ${userProfile.name}`}</h1>
+        <h1 className="profile__title">{`Привет, ${name}`}</h1>
         <form
-          className={`profile__form ${!isValid && "profile__form_incorrect-input"}`}
+          className={`profile__form ${(!isValid || !hasChanges) && "profile__form_incorrect-input"}`}
           name="profile"
           onSubmit={handleSubmit}>
           <label className="profile__label">Имя
@@ -75,33 +83,34 @@ function Profile({
               onChange={handleChange} />
             <span className="profile__error-message">{errors.email}</span>
           </label>
-          {
-            editingSuccessful &&
-            <p className="profile__paragraph profile__paragraph_color_green">Профиль успешно обновлен!</p>
-          }
-          {
-            (editOn && !isValid) &&
-            <p className="profile__paragraph profile__paragraph_color_red">{errorMessage}</p>
-          } {
-            editOn
-              ? <button
-                className={`profile__button profile__button_assignment_submit ${!isValid && "profile__button_disabled"}`}
-                type="submit"
-                aria-label="Сохранить изменения."
-                disabled={!isValid}>Сохранить</button>
-              : <div className="profile__panel">
-                <button
-                  className="profile__button profile__button_assignment_edit"
-                  type="button"
-                  aria-label="Редактировать профиль."
-                  onClick={handleEdit}>Редактировать</button>
-                <button
-                  className="profile__button profile__button_assignment_exit"
-                  type="button"
-                  aria-label="Выйти из аккаунта."
-                  onClick={handleLogOut}>Выйти из аккаунта</button>
-              </div>
-          }
+          <div className="profile__edit-panel">
+            {
+              editingSuccessful &&
+              <p className="profile__paragraph profile__paragraph_color_green">Профиль успешно обновлен!</p>
+            } {
+              editOn
+                ? <button
+                  className={`profile__button profile__button_assignment_submit`}
+                  type="submit"
+                  aria-label="Сохранить изменения."
+                  disabled={!isValid || !hasChanges}>Сохранить</button>
+                : <div className="profile__edit-panel-group">
+                  <button
+                    className="profile__button profile__button_assignment_edit"
+                    type="button"
+                    aria-label="Редактировать профиль."
+                    onClick={handleEdit}>Редактировать</button>
+                  <button
+                    className="profile__button profile__button_assignment_exit"
+                    type="button"
+                    aria-label="Выйти из аккаунта."
+                    onClick={handleLogOut}>Выйти из аккаунта</button>
+                </div>
+            } {
+              (editOn && !isValid) &&
+              <p className="profile__paragraph profile__paragraph_color_red">{errorMessage}</p>
+            }
+          </div>
         </form>
       </main>
     </>

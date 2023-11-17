@@ -21,34 +21,18 @@ function SavedMovies({
 }) {
   const {
     arrey,
-    listLength,
-    uploaderOn,
-    uploadList,
-    handleUploader,
-    adjustListWidth } = useList();
+    uploadCompleteList
+  } = useList();
 
-  useEffect(() => {
-    let timeoutId;
-
-    function handleResize() {
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => {
-        adjustListWidth(window.innerWidth);
-      }, 300);
-    };
-
-    adjustListWidth(window.innerWidth);
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  function handleSearchFormSubmit(keyword, shortFilmsChecked) {
+    searchMovie(keyword, shortFilmsChecked);
+  }
 
   useEffect(() => {
     refreshResult(userMoviesDatabase);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userMoviesDatabase])
+
 
   return (
     <>
@@ -57,12 +41,12 @@ function SavedMovies({
       <main className="main">
         <SearchForm
           isSearchingNewMovies={false}
-          searchMovie={searchMovie} />
+          handleSearchFormSubmit={handleSearchFormSubmit}
+          userMoviesDatabase={userMoviesDatabase} />
         <MoviesCardList
           isSavedMovies={true}
           movies={arrey}
-          listLength={listLength}
-          uploadList={uploadList}
+          uploadList={uploadCompleteList}
           searchResult={searchResult}
           userMoviesDatabase={userMoviesDatabase}
           saveMovie={saveMovie}
@@ -71,8 +55,7 @@ function SavedMovies({
           searchResultNotFound={searchResultNotFound}
           errorMessage={errorMessage}
           preloaderOn={preloaderOn}
-          uploaderOn={uploaderOn}
-          handleUploader={handleUploader} />
+          uploaderOn={false} />
       </main>
 
       <Footer />

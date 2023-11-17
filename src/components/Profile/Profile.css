@@ -18,6 +18,7 @@
 }
 
 .profile__form {
+  min-height: 320px;
   width: 410px;
   display: flex;
   flex-direction: column;
@@ -62,7 +63,6 @@
 }
 
 .profile__label:last-of-type {
-  margin-bottom: 220px;
   border: none;
   padding: 16px 0 0;
 }
@@ -81,10 +81,6 @@
   border-radius: 2px;
 }
 
-.profile__input:invalid {
-  color: #EE3465;
-}
-
 .profile__error-message {
   color: #EE3465;
   width: 100%;
@@ -92,7 +88,14 @@
   font-weight: 400;
 }
 
-.profile__panel {
+.profile__edit-panel {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.profile__edit-panel-group {
   display: flex;
   flex-direction: column;
 }
@@ -136,10 +139,6 @@
   pointer-events: none;
 }
 
-.profile__form_incorrect-input .profile__label:last-of-type {
-  margin-bottom: calc(220px - 34px);
-}
-
 .profile__form_incorrect-input .profile__paragraph {
   display: inline-block;
 }
@@ -150,12 +149,6 @@
   }
   .profile__title {
     margin: 0 0 95px;
-  }
-  .profile__label:last-of-type {
-    margin-bottom: 210px;
-  }
-  .profile__form_incorrect-input .profile__label:last-of-type {
-    margin-bottom: calc(210px - 34px);
   }
 }
 
@@ -170,12 +163,6 @@
   .profile__form {
     flex: 1;
     width: 260px;
-  }
-  .profile__label:last-of-type {
-    margin-bottom: auto;
-  }
-  .profile__form_incorrect-input .profile__label:last-of-type {
-    margin-bottom: auto;
   }
   .profile__button {
     font-size: 12px;

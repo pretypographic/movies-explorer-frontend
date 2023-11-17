@@ -108,4 +108,7 @@
   .movies-card__name {    
     font-size: 12px;
   }
+  .movies-card__button {
+    opacity: 1;
+  }
 }

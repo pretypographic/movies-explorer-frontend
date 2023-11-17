@@ -4,7 +4,8 @@ import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 
 function SearchForm({
   isSearchingNewMovies,
-  searchMovie,
+  handleSearchFormSubmit,
+  userMoviesDatabase
 }) {
   const [shortFilmsChecked, setShortFilmsChecked] = useState(false);
   const { values, setValues, errors, isValid, handleChange } = useForm();
@@ -15,7 +16,7 @@ function SearchForm({
 
   function handleSubmit(event) {
     event.preventDefault();
-    searchMovie(values.keyword, shortFilmsChecked);
+    handleSearchFormSubmit(values.keyword, shortFilmsChecked);
   }
 
   useEffect(() => {
@@ -25,14 +26,21 @@ function SearchForm({
         setValues({ ...values, keyword: keyword });
         setShortFilmsChecked(shortFilmsChecked);
       }
-    }
+    } 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
-    searchMovie(values.keyword, shortFilmsChecked);
+    handleSearchFormSubmit(values.keyword, shortFilmsChecked);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [shortFilmsChecked])
+
+  useEffect(() => {
+    if(userMoviesDatabase) {
+      handleSearchFormSubmit(values.keyword, shortFilmsChecked);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userMoviesDatabase])
 
   return (
     <section className="search-form">

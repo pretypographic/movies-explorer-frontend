@@ -1,5 +1,29 @@
-const BASE_URL_MAIN = "https://api.cu2ewa.nomoredomainsrocks.ru";
+// const BASE_URL_MAIN = "https://api.cu2ewa.nomoredomainsrocks.ru";
+const BASE_URL_MAIN = "http://localhost:5000";
 const BASE_URL_MOVIES = `${BASE_URL_MAIN}/movies`;
 const BASE_URL_BF = "https://api.nomoreparties.co/beatfilm-movies";
 
-export {BASE_URL_MAIN, BASE_URL_MOVIES, BASE_URL_BF};
+const BREAKPOINT_LARGE = 1280;
+const BREAKPOINT_MEDIUM = 768;
+
+const ELEMENT_PER_PAGE_LARGE = 12;
+const ELEMENT_PER_PAGE_MEDIUM = 8;
+const ELEMENT_PER_PAGE_SMALL = 5;
+
+const ELEMENT_PER_PAGE_ON_LOAD_LARGE = 3;
+const ELEMENT_PER_PAGE_ON_LOAD_MEDIUM = 2;
+
+const HOUR = 60;
+
+export {
+  BASE_URL_MAIN, 
+  BASE_URL_MOVIES, 
+  BASE_URL_BF,
+  BREAKPOINT_LARGE,
+  BREAKPOINT_MEDIUM,
+  ELEMENT_PER_PAGE_LARGE,
+  ELEMENT_PER_PAGE_MEDIUM,
+  ELEMENT_PER_PAGE_SMALL,
+  ELEMENT_PER_PAGE_ON_LOAD_LARGE,
+  ELEMENT_PER_PAGE_ON_LOAD_MEDIUM,
+  HOUR };

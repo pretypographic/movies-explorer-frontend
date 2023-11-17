@@ -27,6 +27,11 @@ function Movies({
     handleUploader,
     adjustListWidth } = useList();
 
+  function handleSearchFormSubmit(keyword, shortFilmsChecked) {
+    searchMovie(keyword, shortFilmsChecked);
+    adjustListWidth(window.innerWidth);
+  }
+
   useEffect(() => {
     let timeoutId;
 
@@ -62,7 +67,7 @@ function Movies({
       <main className="main">
         <SearchForm
           isSearchingNewMovies={true}
-          searchMovie={searchMovie} />
+          handleSearchFormSubmit={handleSearchFormSubmit} />
         <MoviesCardList
           isSavedMovies={false}
           movies={arrey}

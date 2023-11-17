@@ -2,15 +2,26 @@ import { Link } from 'react-router-dom';
 import useForm from '../../hooks/useForm';
 
 import Logo from '../Logo/Logo';
+import { useEffect } from "react";
 
 function UserForm({ signup, heading, errorMessage, submitButtonLabel, handleUserForm }) {
-  const { values, errors, isValid, handleChange, resetForm } = useForm();
+  const {
+    values,
+    errors,
+    isValid,
+    handleChange,
+    resetForm,
+  } = useForm();
 
   function handleSubmit(event) {
     event.preventDefault();
     handleUserForm(values);
-    resetForm();
   }
+
+  useEffect(() => {
+    resetForm()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <section className="user-form">
@@ -54,7 +65,7 @@ function UserForm({ signup, heading, errorMessage, submitButtonLabel, handleUser
             value={values.password ? values.password : ""}
             placeholder="Напечатайте пароль"
             type="password"
-            minLength="2"
+            minLength="8"
             required
             onChange={handleChange} />
           <span className="user-form__error-message">{errors.password}</span>

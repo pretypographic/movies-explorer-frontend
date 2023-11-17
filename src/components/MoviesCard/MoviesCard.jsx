@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 
+import { HOUR } from "../../utils/constants";
+
 function MoviesCard({ isSavedMovies, movie, userMoviesDatabase, saveMovie, deleteMovie }) {
   const [movieSaved, setMovieSaved] = useState(false);
 
   function formatDuration(duration) {
-    const hours = Math.floor(duration / 60);
-    const minutes = duration % 60;
+    const hours = Math.floor(duration / HOUR);
+    const minutes = duration % HOUR;
 
     if (hours > 0) {
       return `${hours}ч ${minutes}м`;

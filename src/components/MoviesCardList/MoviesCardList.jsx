@@ -20,7 +20,7 @@ function MoviesCardList({
   return (
     <section className="movies-card-list">
       {
-        movies.map((movie, id) => (
+        movies.map((movie) => (
           <MoviesCard
             isSavedMovies={isSavedMovies}
             key={movie.id}

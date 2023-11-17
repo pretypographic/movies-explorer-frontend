@@ -10,11 +10,11 @@ function Main({ loggedIn }) {
     <>
       <Header loggedIn={loggedIn} />
 
-      <main className="main">
+      <main className="main ">
         <Promo />
-        <AboutProject name="about-project" />
-        <Techs name="techs" />
-        <AboutMe name="about-me" />
+        <AboutProject />
+        <Techs />
+        <AboutMe />
       </main>
 
       <Footer />
