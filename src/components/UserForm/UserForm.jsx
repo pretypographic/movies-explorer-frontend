@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import useForm from '../../hooks/useForm';
 
 import Logo from '../Logo/Logo';
-import { useEffect } from "react";
 
 function UserForm({ signup, heading, errorMessage, submitButtonLabel, handleUserForm }) {
   const {
@@ -15,13 +14,11 @@ function UserForm({ signup, heading, errorMessage, submitButtonLabel, handleUser
 
   function handleSubmit(event) {
     event.preventDefault();
-    handleUserForm(values);
+    handleUserForm(values)
+      .then(() => {
+        resetForm();
+      });
   }
-
-  useEffect(() => {
-    resetForm()
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
 
   return (
     <section className="user-form">

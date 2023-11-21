@@ -15,6 +15,7 @@ import Login from "../Login/Login";
 import Register from "../Register/Register";
 import NotFound from "../NotFound/NotFound";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import { SHORTFILM_DURATION } from "../../utils/constants";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -34,24 +35,28 @@ function App() {
     console.log(error);
   }
 
+  function resetError() {
+    setErrorMessage("");
+  };
+
   function getUserProfile() {
     mainApi.getUser()
       .then((user) => {
         setUserProfile(user);
+        setLoggedIn(true);
       })
       .catch((error) => {
         handleError(error);
       })
-  }
+  };
 
-  function handleRegister(user) {
+  function handleLogIn(user) {
     setLoading(true);
-    mainApi.createUser(user)
+    mainApi.authorizeUser(user)
       .then(() => {
         getUserProfile();
-        setLoggedIn(true);
         navigate("/movies", { replace: true });
-        setErrorMessage("");
+        resetError();
       })
       .catch((error) => {
         handleError(error);
@@ -59,16 +64,13 @@ function App() {
       .finally(() => {
         setLoading(false);
       })
-  }
+  };
 
-  function handleLogIn(user) {
+  function handleRegister(user) {
     setLoading(true);
-    mainApi.authorizeUser(user)
+    mainApi.createUser(user)
       .then(() => {
-        getUserProfile();
-        setLoggedIn(true);
-        navigate("/movies", { replace: true });
-        setErrorMessage("");
+        handleLogIn(user);
       })
       .catch((error) => {
         handleError(error);
@@ -101,7 +103,7 @@ function App() {
       .then((user) => {
         setUserProfile(user);
         setEditingSuccessful(true);
-        setErrorMessage("");
+        resetError();
       })
       .catch((error) => {
         handleError(error);
@@ -120,7 +122,7 @@ function App() {
         regex.test(movie.nameEN.toLowerCase());
 
       if (shortFilmsChecked) {
-        return matcheskeyword && movie.duration <= 40;
+        return matcheskeyword && movie.duration <= SHORTFILM_DURATION;
       } else {
         return matcheskeyword;
       }
@@ -161,7 +163,7 @@ function App() {
       .then((moviesDatabase) => {
         handleSearch(moviesDatabase, keyword, shortFilmsChecked, true);
         setMoviesDatabase(moviesDatabase);
-        setErrorMessage("");
+        resetError();
       })
       .catch((error) => {
         handleError(error);
@@ -189,7 +191,7 @@ function App() {
     moviesApi.getMovies()
       .then((moviesDatabase) => {
         handleSearch(moviesDatabase, keyword, shortFilmsChecked)
-        setErrorMessage("");
+        resetError();
       })
       .catch((error) => {
         handleError(error);
@@ -239,7 +241,7 @@ function App() {
 
   useEffect(() => {
     setLoading(true);
-    setErrorMessage("");
+    resetError();
     mainApi.getUser()
       .then((user) => {
         setUserProfile(user);
@@ -323,6 +325,7 @@ function App() {
             redirectPath="/"
             loggedIn={!loggedIn}
             errorMessage={errorMessage}
+            resetError={resetError}
             handleLogIn={handleLogIn}
             preloaderOn={preloaderOn} />} />
 
@@ -331,6 +334,7 @@ function App() {
             redirectPath="/"
             loggedIn={!loggedIn}
             errorMessage={errorMessage}
+            resetError={resetError}
             handleRegister={handleRegister}
             preloaderOn={preloaderOn} />} />
 
