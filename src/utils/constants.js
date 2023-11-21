@@ -1,4 +1,5 @@
 const BASE_URL_MAIN = "https://api.cu2ewa.nomoredomainsrocks.ru";
+// const BASE_URL_MAIN = "http://localhost:5000";
 const BASE_URL_MOVIES = `${BASE_URL_MAIN}/movies`;
 const BASE_URL_BF = "https://api.nomoreparties.co/beatfilm-movies";
 

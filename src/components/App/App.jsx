@@ -20,6 +20,7 @@ import { SHORTFILM_DURATION } from "../../utils/constants";
 function App() {
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
+  const [formValues, setFormValues] = useState({});
   const [loggedIn, setLoggedIn] = useState(false);
   const [formSwitch, setFormSwitch] = useState("");
   const [userProfile, setUserProfile] = useState({});
@@ -36,8 +37,9 @@ function App() {
     console.log(error);
   }
 
-  function resetError() {
+  function resetForm() {
     setErrorMessage("");
+    setFormValues({});
   };
 
   function switchForm(pathname) {
@@ -57,11 +59,12 @@ function App() {
 
   function handleLogIn(user) {
     setLoading(true);
+    setFormValues(user);
     mainApi.authorizeUser(user)
       .then(() => {
         getUserProfile();
         navigate("/movies", { replace: true });
-        resetError();
+        resetForm();
       })
       .catch((error) => {
         handleError(error);
@@ -73,6 +76,7 @@ function App() {
 
   function handleRegister(user) {
     setLoading(true);
+    setFormValues(user);
     mainApi.createUser(user)
       .then(() => {
         handleLogIn(user);
@@ -87,6 +91,7 @@ function App() {
 
   function handleLogOut() {
     setLoading(true);
+    setFormValues({});
     mainApi.closeUserSession()
       .then(() => {
         setUserProfile({});
@@ -104,11 +109,12 @@ function App() {
 
   function handleEditingUserProfile(user) {
     setLoading(true);
+    setFormValues(user);
     mainApi.patchUser(user)
       .then((user) => {
         setUserProfile(user);
         setEditingSuccessful(true);
-        resetError();
+        resetForm();
       })
       .catch((error) => {
         handleError(error);
@@ -168,7 +174,7 @@ function App() {
       .then((moviesDatabase) => {
         handleSearch(moviesDatabase, keyword, shortFilmsChecked, true);
         setMoviesDatabase(moviesDatabase);
-        resetError();
+        resetForm();
       })
       .catch((error) => {
         handleError(error);
@@ -196,7 +202,7 @@ function App() {
     moviesApi.getMovies()
       .then((moviesDatabase) => {
         handleSearch(moviesDatabase, keyword, shortFilmsChecked)
-        resetError();
+        resetForm();
       })
       .catch((error) => {
         handleError(error);
@@ -246,7 +252,7 @@ function App() {
 
   useEffect(() => {
     setLoading(true);
-    resetError();
+    resetForm();
     mainApi.getUser()
       .then((user) => {
         setUserProfile(user);
@@ -322,6 +328,7 @@ function App() {
             loggedIn={loggedIn}
             editingSuccessful={editingSuccessful}
             errorMessage={errorMessage}
+            formValues={formValues}
             handleLogOut={handleLogOut}
             handleEditingUserProfile={handleEditingUserProfile} />} />
 
@@ -330,7 +337,8 @@ function App() {
             redirectPath="/"
             loggedIn={!loggedIn}
             errorMessage={errorMessage}
-            resetError={resetError}
+            formValues={formValues}
+            resetForm={resetForm}
             handleLogIn={handleLogIn}
             preloaderOn={preloaderOn}
             formSwitch={formSwitch}
@@ -341,7 +349,8 @@ function App() {
             redirectPath="/"
             loggedIn={!loggedIn}
             errorMessage={errorMessage}
-            resetError={resetError}
+            formValues={formValues}
+            resetForm={resetForm}
             handleRegister={handleRegister}
             preloaderOn={preloaderOn}
             formSwitch={formSwitch}

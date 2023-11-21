@@ -8,10 +8,11 @@ function Profile({
   loggedIn,
   editingSuccessful,
   errorMessage,
+  formValues,
   handleLogOut,
   handleEditingUserProfile,
 }) {
-  const { values, setValues, errors, isValid, handleChange } = useForm();
+  const { values, setValues, errors, isValid, handleChange } = useForm(formValues);
   const { name, email } = useContext(UserContext);
   const [editOn, setEditOn] = useState(false);
   const [hasChanges, setHasChanges] = useState(false);
@@ -26,10 +27,12 @@ function Profile({
   }
 
   useEffect(() => {
-    setValues({
-      name: name,
-      email: email,
-    })
+    if (!formValues.name || !formValues.email) {
+      setValues({
+        name: name,
+        email: email,
+      })
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -88,6 +91,9 @@ function Profile({
               editingSuccessful &&
               <p className="profile__paragraph profile__paragraph_color_green">Профиль успешно обновлен!</p>
             } {
+              (editOn && !isValid) &&
+              <p className="profile__paragraph profile__paragraph_color_red">{errorMessage}</p>
+            } {
               editOn
                 ? <button
                   className={`profile__button profile__button_assignment_submit`}
@@ -106,9 +112,6 @@ function Profile({
                     aria-label="Выйти из аккаунта."
                     onClick={handleLogOut}>Выйти из аккаунта</button>
                 </div>
-            } {
-              (editOn && !isValid) &&
-              <p className="profile__paragraph profile__paragraph_color_red">{errorMessage}</p>
             }
           </div>
         </form>

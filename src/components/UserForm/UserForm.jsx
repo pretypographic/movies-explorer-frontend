@@ -2,23 +2,26 @@ import { Link } from 'react-router-dom';
 import useForm from '../../hooks/useForm';
 
 import Logo from '../Logo/Logo';
+import { useEffect } from "react";
 
-function UserForm({ signup, heading, errorMessage, submitButtonLabel, handleUserForm }) {
+function UserForm({ signup, heading, errorMessage, formValues, submitButtonLabel, handleUserForm }) {
   const {
     values,
+    setValues,
     errors,
     isValid,
     handleChange,
-    resetForm,
-  } = useForm();
+  } = useForm(formValues);
 
   function handleSubmit(event) {
     event.preventDefault();
-    handleUserForm(values)
-      .then(() => {
-        resetForm();
-      });
-  }
+    handleUserForm(values);
+  };
+
+  useEffect(() => {
+    setValues(formValues)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [formValues])
 
   return (
     <section className="user-form">

@@ -8,7 +8,7 @@ function SearchForm({
   userMoviesDatabase
 }) {
   const [shortFilmsChecked, setShortFilmsChecked] = useState(false);
-  const { values, setValues, errors, isValid, handleChange } = useForm();
+  const { values, setValues, errors, isValid, handleChange } = useForm({});
 
   function handleCheckboxChange() {
     setShortFilmsChecked(!shortFilmsChecked);

@@ -1,7 +1,7 @@
 import { useState, useCallback } from "react";
 
-function useForm() {
-  const [values, setValues] = useState({});
+function useForm(formValues) {
+  const [values, setValues] = useState(formValues);
   const [errors, setErrors] = useState({});
   const [isValid, setIsValid] = useState(false);
   const emailValidationRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
