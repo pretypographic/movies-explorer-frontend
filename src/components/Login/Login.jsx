@@ -1,9 +1,16 @@
 import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import UserForm from "../UserForm/UserForm";
 
-function Login({ handleLogIn, errorMessage, resetError }) {
+function Login({ handleLogIn, errorMessage, resetError, formSwitch, switchForm }) {
+  const { pathname } = useLocation();
+
   useEffect(() => {
-    resetError()
+    console.log(pathname);
+    if (pathname !== formSwitch) {
+      switchForm(pathname);
+      resetError();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

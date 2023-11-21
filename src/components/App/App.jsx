@@ -21,6 +21,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
+  const [formSwitch, setFormSwitch] = useState("");
   const [userProfile, setUserProfile] = useState({});
   const [editingSuccessful, setEditingSuccessful] = useState(false);
   const [moviesDatabase, setMoviesDatabase] = useState([]);
@@ -37,6 +38,10 @@ function App() {
 
   function resetError() {
     setErrorMessage("");
+  };
+
+  function switchForm(pathname) {
+    setFormSwitch(pathname);
   };
 
   function getUserProfile() {
@@ -327,7 +332,9 @@ function App() {
             errorMessage={errorMessage}
             resetError={resetError}
             handleLogIn={handleLogIn}
-            preloaderOn={preloaderOn} />} />
+            preloaderOn={preloaderOn}
+            formSwitch={formSwitch}
+            switchForm={switchForm} />} />
 
           <Route path="/signup" element={<ProtectedRoute
             element={Register}
@@ -336,7 +343,9 @@ function App() {
             errorMessage={errorMessage}
             resetError={resetError}
             handleRegister={handleRegister}
-            preloaderOn={preloaderOn} />} />
+            preloaderOn={preloaderOn}
+            formSwitch={formSwitch}
+            switchForm={switchForm} />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>
