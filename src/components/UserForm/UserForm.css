@@ -27,7 +27,6 @@
 
 .user-form__label {
   color: #8B8B8B;
-  margin-bottom: 20px;
   display: flex;
   flex-direction: column;  
   font-size: 10px;
@@ -50,9 +49,6 @@
   padding-left: 15px;
   background: #2F2F2F;  
   font-size: 13px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
 }
 
 .user-form__input:focus {
@@ -61,7 +57,21 @@
 
 .user-form__input:invalid {
   color: #EE3465;
-  font-size: 10px;
+}
+
+.user-form__error-message {
+  color: #EE3465;
+  margin: 10px 0;
+}
+
+.user-form__error-message {
+  margin: 0 0 20px;
+  text-align: center;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  font-weight: 400;
 }
 
 .user-form__button {
@@ -77,6 +87,12 @@
   line-height: normal;
   transition: 0.4s;
   cursor: pointer;
+}
+
+.user-form__button_disabled {
+  color: #C2C2C2;
+  background: #F8F8F8;
+  pointer-events: none;
 }
 
 .user-form__button:hover {
@@ -112,7 +128,6 @@
 @media screen and (max-width: 1279px) {
   .user-form {
     padding: 232px 0;
-    /* 0 */
   }
 }
 

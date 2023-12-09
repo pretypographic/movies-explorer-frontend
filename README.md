@@ -1,6 +1,8 @@
 # movies-explorer-frontend
 
-Макет: dark-2
+- Макет: dark-2
+- Pull requeast: [https://github.com/pretypographic/movies-explorer-frontend/pull/16](https://github.com/pretypographic/movies-explorer-frontend/pull/16)
+- Ссылка на развернутый проект: [https://cu2ewa.nomoredomainsrocks.ru](https://cu2ewa.nomoredomainsrocks.ru)
 
 ## Описание
 
@@ -26,7 +28,6 @@
 
 - `react` - библиотека React
 - `react-router-dom` - для маршрутизации
-- `react-scroll` - для навигации по странице
 - другие зависимости, указанные в `package.json`
 
 ### Примечание
