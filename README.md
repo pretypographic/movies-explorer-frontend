@@ -1,35 +1,31 @@
 # movies-explorer-frontend
+**Design:** dark-2
+**Deployed Project Link:** [https://cu2ewa.nomoredomains.rocks](https://cu2ewa.nomoredomains.rocks)
 
-- Макет: dark-2
-- Pull requeast: [https://github.com/pretypographic/movies-explorer-frontend/pull/16](https://github.com/pretypographic/movies-explorer-frontend/pull/16)
-- Ссылка на развернутый проект: [https://cu2ewa.nomoredomainsrocks.ru](https://cu2ewa.nomoredomainsrocks.ru)
+## Description
+This is the frontend part of the Movies Explorer project, which allows users to search for movies, save them to favorites, and manage their profiles. The frontend is created using the React library and the React Router framework for navigation between pages.
 
-## Описание
+## Functionality
+- The main page (`/`) displays information about the project and the graduate.
+- The "Movies" page (`/movies`) provides the ability to search for and display movies.
+- The "Saved Movies" page (`/saved-movies`) shows the movies saved by the user.
+- The "Profile" page (`/profile`) allows the user to manage their profile and log out.
+- The "Sign In" page (`/signin`) provides a form for user authentication.
+- The "Sign Up" page (`/signup`) is used to create a new account.
 
-Это фронтенд-часть проекта Movies Explorer, который позволяет пользователям искать фильмы, сохранять их в избранное, а также управлять своим профилем. Фронтенд создан с использованием библиотеки React и фреймворка React Router для навигации между страницами.
+## Installation and Running
+To run the application in developer mode:
 
-## Функциональность
+npm run start
 
-- Главная страница (`/`) отображает информацию о проекте и выпускнике.
-- Страница "Фильмы" (`/movies`) предоставляет возможность поиска и отображения фильмов.
-- Страница "Сохраненные фильмы" (`/saved-movies`) показывает фильмы, сохраненные пользователем.
-- Страница "Профиль" (`/profile`) позволяет пользователю управлять своим профилем и выйти из аккаунта.
-- Страница "Вход" (`/signin`) предоставляет форму для аутентификации пользователя.
-- Страница "Регистрация" (`/signup`) используется для создания нового аккаунта.
+## Dependencies
 
-## Установка и запуск
+The project uses the following dependencies:
 
-Для запуска приложения в режиме разработчика:
-- `npm run start`
+- `react` - React library
+- `react-router-dom` - for routing
+- other dependencies listed in `package.json`
 
-## Зависимости
+### Note
 
-Проект использует следующие зависимости:
-
-- `react` - библиотека React
-- `react-router-dom` - для маршрутизации
-- другие зависимости, указанные в `package.json`
-
-### Примечание
-
-Этот проект является частью сервиса Movies Explorer, который включает в себя и бэкенд-часть, доступную по ссылке: [https://github.com/pretypographic/movies-explorer-api](https://github.com/pretypographic/movies-explorer-api)
+This project is part of the Movies Explorer service, which includes a backend part available at: https://github.com/pretypographic/movies-explorer-api
