@@ -16,7 +16,7 @@ This is the frontend part of the Movies Explorer project, which allows users to 
 ## Installation and Running
 To run the application in developer mode:
 
-npm run start
+`npm run start`
 
 ## Dependencies
 
