@@ -78,7 +78,7 @@ function App() {
     setLoading(true);
     setFormValues(user);
     mainApi.createUser(user)
-      .then(() => {
+      .then((user) => {
         handleLogIn(user);
       })
       .catch((error) => {
