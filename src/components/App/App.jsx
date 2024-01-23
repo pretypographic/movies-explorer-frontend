@@ -75,11 +75,12 @@ function App() {
   };
 
   function handleRegister(user) {
+    const { email, password } = user;
     setLoading(true);
     setFormValues(user);
     mainApi.createUser(user)
-      .then((user) => {
-        handleLogIn(user);
+      .then(() => {
+        handleLogIn({ email, password });
       })
       .catch((error) => {
         handleError(error);
