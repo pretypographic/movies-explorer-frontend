@@ -7,7 +7,7 @@ function AboutMe() {
       <h2 className="about-me__title">Студент</h2>
       <article className="about-me__article">
         <div className="about-me__experience">
-        <h3 className="about-me__name">Песвианидзе Александр</h3>
+        <h3 className="about-me__name">Фэс Александр</h3>
           <h4 className="about-me__subtitle">web-разработчик, 30 лет</h4>
           <p className="about-me__text">Мой профессиональный путь начался
             в&nbsp;области кинорежиссуры, но&nbsp;со&nbsp;временем
