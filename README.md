@@ -1,6 +1,6 @@
 # movies-explorer-frontend
 **Design:** dark-2
-**Deployed Project Link:** [https://cu2ewa.nomoredomains.rocks](https://cu2ewa.nomoredomains.rocks)
+**Deployed Project Link:** [https://cu2ewa.nomoredomainsrocks.ru/](https://cu2ewa.nomoredomainsrocks.ru/)
 
 ## Description
 This is the frontend part of the Movies Explorer project, which allows users to search for movies, save them to favorites, and manage their profiles. The frontend is created using the React library and the React Router framework for navigation between pages.
